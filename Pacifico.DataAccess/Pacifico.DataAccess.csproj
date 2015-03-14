@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71358974-9316-4B39-BFFF-8F9D390DF483}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pacifico.DataAccess</RootNamespace>
+    <AssemblyName>Pacifico.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADEXPEDIENTE.cs" />
+    <Compile Include="ADINFORME_PROCURADORIA.cs" />
+    <Compile Include="ARTICULO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ASEGURADO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BENEFICIARIO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CARGO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CARTA_NOTARIAL.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CERT_MEDICO_DEFUNCION.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DEPARTAMENTO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DISTRITO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMPLEADO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ESPECIALIDAD.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ESTADO_SINIESTRO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ESTADO_SOLICITUD.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EXPEDIENTE.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FORMA_PAGO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HISTORIAL_CLINICO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INFORME_ACCIDENTE_VEHICULAR.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INFORME_PROCURADORIA.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="INVITACION.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MARCA_VEHICULO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MODELO_VEHICULO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MOTOR_VEHICULO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ORDEN_REPARACION.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pacifico.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pacifico.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pacifico.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pacifico.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pacifico.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="POLIZA_VEHICULAR.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POLIZA_VIDA.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRESTADORA.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRESUPUESTO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PRESUPUESTO_DETALLE.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROCURADOR.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PROT_JURADA_DOMICILIO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROVINCIA.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RED.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="REGISTRO_DOCUMENTO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEDE.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SERVICIO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SERVICIO_SEDE.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SINIESTRO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SINIESTRO_VEHICULAR.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SOLICITUD_AFILIACION.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIPO_POLIZA_VEHICULAR.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TIPO_SINIESTRO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USUARIO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VEHICULO.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Pacifico.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Pacifico.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Pacifico.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Pacifico.edmx</DependentUpon>
+      <LastGenOutput>Pacifico.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Pacifico.edmx.diagram">
+      <DependentUpon>Pacifico.edmx</DependentUpon>
+    </None>
+    <None Include="Pacifico.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Pacifico.edmx</DependentUpon>
+      <LastGenOutput>Pacifico.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,9 +1,9 @@
 packages
 PacificoSeguros.v11.suo
-Pacifico.Business\bin
-Pacifico.Business\obj
-Pacifico.DataAccess\bin
-Pacifico.DataAccess\obj
-Pacifico.Interfaces\bin
-Pacifico.Interfaces\obj
+Pacifico.Business/bin
+Pacifico.Business/obj
+Pacifico.DataAccess/bin
+Pacifico.DataAccess/obj
+Pacifico.Interfaces/bin
+Pacifico.Interfaces/obj
 
