@@ -1,0 +1,55 @@
+﻿@model Bussiness.dbdb26105f6922475e9f5ea3b8011a41a8Entities
+@{
+    ViewBag.Title = "Registro de Presupuesto";
+    Layout = "~/Views/RegistrarPresupuesto.cshtml";
+}
+
+
+
+@using (Html.BeginForm()) { 
+ <form>
+     <div>@Html.ActionLink("","")</div>
+    <h2>REGISTRO DE PRESUPUESTOS</h2>
+    <div class="from-actions">
+    <table width="100%">
+        <tr>
+
+            <td><label>Siniestro: </label></td>
+            <td><%: @Html.DropDownListFor(model => model.SINIESTRO, new SelectList(Model.SINIESTRO, "Co_Siniestro", "Nu_Siniestro"), "----- Selecciona -----")%></td>
+        </tr>
+        <tr>
+            <td><%:@Html.TextBox("Asegurado: ") %></td>
+        </tr>
+        <tr>
+            <td><%:@Html.TextBox("Nu. Poliza: ") %></td>
+            <td><%:@Html.TextBox("Placa: ") %></td>
+        </tr>
+    </table>
+    <fieldset>
+        <legend>Detalles</legend>
+        <div style="padding-right:30px; float:right">
+            @Html.DropDownList("Artículo: ")
+        </div>
+        <div style="padding-left:30px; float:left;">
+            @Html.TextBox("Cantidad: ")
+        </div>
+        <div>
+            @Html.TextBox("Precio: ")
+        </div>
+        <div>
+            
+        </div>
+
+
+    </fieldset>
+</div>
+</form>   
+
+
+    
+    
+    
+    
+
+    
+}

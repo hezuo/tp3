@@ -1,0 +1,45 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+<!DOCTYPE html>
+<html lang="en">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+        <link href="<%: Url.Content("~/favicon.ico") %>" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <link href="/Content/PagedList.css" rel="stylesheet" />
+        <%: Styles.Render("~/Content/css") %>
+        <%: Scripts.Render("~/bundles/bootstrap") %>
+        
+    </head>
+    <body>
+        <div class="container">
+        <header>
+            <div class="page-header">
+                <table width="100%">
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><img src="<%: Url.Content("~/Images/Logo.png") %>" width="80"/></td>
+                        <td align="right">
+                            <%: Html.Partial("_LoginPartial") %>
+                        </td>  
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+        </header>
+        <div id="body">
+            <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </section>
+        </div>
+        <hr>
+        <footer>
+            <p>Pacifico Seguros &copy; Company 2015</p>
+        </footer>
+        </div>
+        <%: Scripts.Render("~/bundles/jquery") %>
+        <asp:ContentPlaceHolder ID="ScriptsSection" runat="server" />
+    </body>
+</html>

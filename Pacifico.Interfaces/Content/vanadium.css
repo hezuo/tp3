@@ -1,0 +1,52 @@
+/* CSS Document */
+/* Vanadium */
+input.vanadium-invalid, select.vanadium-invalid, textarea.vanadium-invalid {
+	cursor:pointer;
+	border-color:#D14 !important;
+	border-style:solid !important;
+	border-width:1pt !important;
+}
+/*input.vanadium-valid, select.vanadium-valid, textarea.vanadium-valid {
+	cursor:auto;
+	border-style:solid !important;
+	border-width:1pt !important;
+}*/
+.vanadium-message-value {
+	font-style:italic;
+	text-decoration:underline;
+}
+.vanadium-advice {
+	background:url(../img/icon_alert.png) no-repeat;
+	width:17px;
+	height:16px;
+	position:absolute;
+	margin-left:2px;
+	margin-top:7px;
+	display:inline;
+	border:0 solid;
+}
+.vanadium-advice.vanadium-invalid, .vanadium-advice.vanadium-invalid * {
+	color:#D14;
+}
+input.vanadium-valid ~ .vanadium-valid-advice {
+	display:inline !important;
+	color:green;
+}
+#tooltip {
+	position:absolute;
+	color:#FFF;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	display:none;
+	text-align:left;
+	background-color:#000;
+	opacity:0.8px;
+	-moz-opacity:0.8px;
+	filter:alpha(opacity=80);
+	width:auto;
+	padding:4px;
+}
+.tooltipTitle {
+	font-weight:700;
+	color:#FFF;
+}
