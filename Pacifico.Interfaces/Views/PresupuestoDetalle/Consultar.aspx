@@ -68,7 +68,7 @@ CONSULTAR PRESUPUESTO</asp:Content>
             Pendiente
                <%  }
                else if (item.Fl_Estado == 3) {%>
-            Cerrado
+            Rechazado
                <% }  %>
         </td>
 

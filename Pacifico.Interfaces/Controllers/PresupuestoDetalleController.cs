@@ -92,7 +92,8 @@ namespace Pacifico.Interfaces.Controllers
             if (ModelState.IsValid)
             {
                 presupuesto.Nu_Presupuesto = "PRE000" + presupuesto.Co_Presupuesto;
-                presupuesto.Fl_Estado = 1;
+                presupuesto.Fl_Estado = 2;
+                presupuesto.Fe_Presupuesto = DateTime.Now; 
                 db.PRESUPUESTO.Add(presupuesto);
                 db.SaveChanges();
                 String[] articulos = collection.GetValues("articulos[]");
@@ -141,7 +142,13 @@ namespace Pacifico.Interfaces.Controllers
 
             return View(presupuesto);
         }
-
+        public ActionResult Rechazar(int codPresupuesto) {
+            PRESUPUESTO presupuesto = db.PRESUPUESTO.Find(codPresupuesto);
+            presupuesto.Fl_Estado = 3;            
+            db.Entry(presupuesto).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Consultar", new { codigo = presupuesto.Co_Presupuesto.ToString(), estado = "Presupuesto rechazado" });
+        }
         [HttpPost]
          public ActionResult Evaluar(PRESUPUESTO presupuesto, FormCollection collection)
         {

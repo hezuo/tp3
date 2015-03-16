@@ -24,7 +24,13 @@
                 <p><%: ViewData["Error"] %></p>
             </font>
             </b></h4>
-          <div style="width: 100%; text-align: right;"><button id="botonGuardar" class="btn">Aprobar Presupuesto</button></div>
+          <div style="width: 100%; text-align: right;"><button id="botonGuardar" class="btn">Aprobar Presupuesto</button>  
+                          <%: Html.ActionLink("Rechazar", "Rechazar", new { codPresupuesto = Model.Co_Presupuesto }, new { @class = "btn"})%>
+
+
+          </div>
+
+
         </div>
     <div class="form-actions">
             <table width="100%">        

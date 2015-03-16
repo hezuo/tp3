@@ -14,8 +14,18 @@ namespace Pacifico.Interfaces.Controllers
         LiquidacionVehicularLogica LiquidacionVehicularLogicaBL = new LiquidacionVehicularLogica();
         private PACIFICOEntities db = new PACIFICOEntities();
 
-        public ActionResult Index()
+        public ActionResult Index(string codigo, string estado)
         {
+
+            if (!string.IsNullOrEmpty(codigo) && !string.IsNullOrEmpty(estado))
+            {
+                if (estado.ToLower().Equals("creado"))
+                {
+                    ViewData["Ok"] = "Liquidacion Vehicular creada satisfactoriamente con Código " + codigo;
+                }
+
+            }
+
             var Listado = LiquidacionVehicularLogicaBL.listarLiquidacion();
             return View(Listado);
         }
@@ -46,8 +56,8 @@ namespace Pacifico.Interfaces.Controllers
             liquidacion_vehicular.Co_Usuario = 1;
             liquidacion_vehicular.Fe_Registro = DateTime.Now;
             LiquidacionVehicularLogicaBL.AgregarLiquidacion(liquidacion_vehicular);
-            return RedirectToAction("Index");
-
+            
+            return RedirectToAction("Index", new { codigo = liquidacion_vehicular.Co_LiquidacionVehicular.ToString(), estado = "creado" });
         }
 
         [HttpPost]
