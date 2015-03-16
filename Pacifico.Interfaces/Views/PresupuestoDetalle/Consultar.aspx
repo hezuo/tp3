@@ -75,7 +75,7 @@ CONSULTAR PRESUPUESTO</asp:Content>
         <td>
             <% if (item.Fl_Estado == 2)
                { %>
-                   <%: Html.ActionLink("Evaluar Presupuesto", "Evaluar", new { codPresupuesto = item.Co_Presupuesto } )   %>
+                   <%: Html.ActionLink(".", "Evaluar", new { codPresupuesto = item.Co_Presupuesto }, new  {  @class = "icon-ok" } )   %>
             <%   }  %>
         </td>
 

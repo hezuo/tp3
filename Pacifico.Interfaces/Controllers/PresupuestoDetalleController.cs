@@ -59,6 +59,10 @@ namespace Pacifico.Interfaces.Controllers
                 {
                     ViewData["Ok"] = "Presupuesto con código " + codigo + " ha sido modificado exitosamente.";
                 }
+                else
+                {
+                    ViewData["Ok"] = estado;
+                }
 
             }
 
@@ -121,6 +125,20 @@ namespace Pacifico.Interfaces.Controllers
         public ActionResult Evaluar(int codPresupuesto)
         {
             PRESUPUESTO presupuesto = db.PRESUPUESTO.Find(codPresupuesto);
+            List<PRESUPUESTO_DETALLE> articulos = (List<PRESUPUESTO_DETALLE>)presupuesto.PRESUPUESTO_DETALLE.ToList();
+            decimal? total = 0;
+            foreach (PRESUPUESTO_DETALLE articulo in articulos)
+            {
+                total += articulo.Qt_Cantidad * articulo.Ss_PrecioDetalle;
+            }
+
+            decimal? montoCobertura = presupuesto.SINIESTRO.POLIZA_VEHICULAR.Ss_MontoCobertura;
+            decimal? montoCoberturaLimite = (montoCobertura * 0.75m);
+            if (total > montoCoberturaLimite)
+            {
+                return RedirectToAction("Consultar", new { codigo = presupuesto.Co_Presupuesto.ToString(), estado = "Presupuesto excedido " });
+            }
+
             return View(presupuesto);
         }
 
@@ -130,10 +148,10 @@ namespace Pacifico.Interfaces.Controllers
             
             if (ModelState.IsValid)
             {
-                presupuesto.Fl_Estado = 2;
+                presupuesto.Fl_Estado = 4;
                 db.Entry(presupuesto).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", new { codigoInformeAccidenteVehicular = presupuesto.Co_Presupuesto.ToString(), estado = "editado" });
+                return RedirectToAction("Consultar", new { codigo = presupuesto.Co_Presupuesto.ToString(), estado = "Presupuesto con código " + presupuesto.Co_Presupuesto + " ha sido aprobado" });
             }
             
             
