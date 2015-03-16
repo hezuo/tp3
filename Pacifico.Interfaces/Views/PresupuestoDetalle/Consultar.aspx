@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Shared/Site.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<Pacifico.DataAccess.PRESUPUESTO>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-PRESUPUESTO</asp:Content>
+CONSULTAR PRESUPUESTO</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <% if (!Request.IsAuthenticated)
@@ -9,9 +9,11 @@ PRESUPUESTO</asp:Content>
         @Response.Redirect("/Home/Index");
     }%>
 
-     <div>
-            <div style="text-align:center;"><h2>Presupuestos</h2>
+
+         <div>
+            <div style="text-align:center;"><h2>Consultar Presupuesto</h2>
          </div>
+            </div>           
 <table width="100%">
     <tr>
         <td>  
@@ -25,13 +27,6 @@ PRESUPUESTO</asp:Content>
     </tr>
 </table>
 
-<table width="100%">
-    <tr>
-        <td><%: Html.ActionLink("Registrar Presupuesto", "Create", "PresupuestoDetalle", routeValues: null, htmlAttributes: new {@class="btn"})%></td>
-        <td><%: Html.ActionLink("Consultar Presupuesto", "Consultar", "PresupuestoDetalle", routeValues: null, htmlAttributes: new {@class="btn"})%></td>
-
-    </tr>
-</table>
 
 <h4><b><font color="blue"><%=ViewData["Ok"] %></font></b></h4>
 
@@ -41,10 +36,16 @@ PRESUPUESTO</asp:Content>
             C&oacute;digo
         </th>
         <th>
-            Presupuesto
+            Asegurado
         </th>
         <th>
-            Medio de pago
+            Tel&eacute;fono
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Evaluar
         </th>
        
     </tr>
@@ -55,11 +56,29 @@ PRESUPUESTO</asp:Content>
             <%: Html.DisplayFor(modelItem => item.Co_Presupuesto) %>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.Nu_Presupuesto) %>
+            <%: Html.DisplayFor(modelItem => item.SINIESTRO.POLIZA_VEHICULAR.ASEGURADO.No_ApePaterno) %>
+            <%: Html.DisplayFor(modelItem => item.SINIESTRO.POLIZA_VEHICULAR.ASEGURADO.No_ApeMaterno) %>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.FORMA_PAGO.No_FormaPago) %>
+            <%: Html.DisplayFor(modelItem => item.SINIESTRO.POLIZA_VEHICULAR.ASEGURADO.Nu_Telefono1) %>
         </td>
+        <td>
+            <% if (item.Fl_Estado == 2)
+               {%>
+            Pendiente
+               <%  }
+               else if (item.Fl_Estado == 3) {%>
+            Cerrado
+               <% }  %>
+        </td>
+
+        <td>
+            <% if (item.Fl_Estado == 2)
+               { %>
+                   <%: Html.ActionLink("Evaluar Presupuesto", "Evaluar", new { codPresupuesto = item.Co_Presupuesto } )   %>
+            <%   }  %>
+        </td>
+
      
 <% } %>
 

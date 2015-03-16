@@ -9,12 +9,7 @@ namespace Pacifico.Business
 {
     public class PresupuestoLogica
     {
-
-
-
-
         PACIFICOEntities presupuestoDA = new PACIFICOEntities();
-
 
         public List<PRESUPUESTO> listarPresupuesto()
         {
@@ -22,6 +17,29 @@ namespace Pacifico.Business
 
             return estados;
         }
+
+        public List<PRESUPUESTO> listarPresupuestoParaConsultar()
+        {
+            List<PRESUPUESTO> presupuestos = presupuestoDA.PRESUPUESTO.ToList();
+
+            IEnumerable<PRESUPUESTO> presupuestosFiltrado;
+
+            List<PRESUPUESTO> presupuestosObtenidos = new List<PRESUPUESTO>();
+            byte estadoPendiente = 2;
+            byte estadoCerrado = 3;
+            presupuestosFiltrado = from p in presupuestos
+                                   where p.Fl_Estado == estadoCerrado || p.Fl_Estado == estadoPendiente                                   
+                                 select p;
+
+            foreach (PRESUPUESTO presupuesto in presupuestosFiltrado)
+            {
+                presupuestosObtenidos.Add(presupuesto);
+            }
+
+            return presupuestosObtenidos;
+        }
+
+        
 
         public Boolean AgregarPresupuesto(PRESUPUESTO presupuesto)
         {

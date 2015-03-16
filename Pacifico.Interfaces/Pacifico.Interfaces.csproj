@@ -363,6 +363,8 @@
     <Content Include="Views\Prestadora\Index.aspx" />
     <Content Include="Views\Prestadora\Search.aspx" />
     <Content Include="Views\Prestadora\Select.aspx" />
+    <Content Include="Views\PresupuestoDetalle\Consultar.aspx" />
+    <Content Include="Views\PresupuestoDetalle\Evaluar.aspx" />
     <Content Include="Views\PresupuestoDetalle\Create.aspx" />
     <Content Include="Views\PresupuestoDetalle\Index.aspx" />
     <Content Include="Views\Sede\CreateSede.aspx" />

@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Pacifico.Business;
 using Pacifico.DataAccess;
 using PagedList;
 using PagedList.Mvc;
+
+using System.Data;
+using System.Data.Entity;
+using System.IO;
 
 
 namespace Pacifico.Interfaces.Controllers
@@ -42,6 +47,24 @@ namespace Pacifico.Interfaces.Controllers
             return View(pagedModel);
         }
 
+        public ActionResult Consultar(string codigo, string estado)
+        {
+            if (!string.IsNullOrEmpty(codigo) && !string.IsNullOrEmpty(estado))
+            {
+                if (estado.ToLower().Equals("creado"))
+                {
+                    ViewData["Ok"] = "Presupuesto creado satisfactoriamente con Código " + codigo;
+                }
+                else if (estado.ToLower().Equals("editado"))
+                {
+                    ViewData["Ok"] = "Presupuesto con código " + codigo + " ha sido modificado exitosamente.";
+                }
+
+            }
+
+            List<PRESUPUESTO> pagedModel = this.presupuestoBL.listarPresupuestoParaConsultar();
+            return View(pagedModel);
+        }
 
 
 
@@ -94,7 +117,29 @@ namespace Pacifico.Interfaces.Controllers
             ViewBag.Co_Siniestro = new SelectList(db.SINIESTRO, "Co_Siniestro", "Nu_Siniestro", presupuesto.Co_Presupuesto);
             return View(presupuesto);
         }
-        
+
+        public ActionResult Evaluar(int codPresupuesto)
+        {
+            PRESUPUESTO presupuesto = db.PRESUPUESTO.Find(codPresupuesto);
+            return View(presupuesto);
+        }
+
+        [HttpPost]
+         public ActionResult Evaluar(PRESUPUESTO presupuesto, FormCollection collection)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                presupuesto.Fl_Estado = 2;
+                db.Entry(presupuesto).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index", new { codigoInformeAccidenteVehicular = presupuesto.Co_Presupuesto.ToString(), estado = "editado" });
+            }
+            
+            
+            return View(presupuesto);
+        }
+    [HttpPost]
         public ActionResult getDatosSiniestro(int codSiniestro)
         {
             SINIESTRO siniestro = db.SINIESTRO.Find(codSiniestro);
