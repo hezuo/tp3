@@ -96,6 +96,7 @@
         <td>&nbsp;</td>
         <td colspan="7" align="center">
 		    <input type="button" value="Grabar Datos" class="btn" onclick="javascript: validarForm()" />
+            <input type="submit" value="submit" class="btn"  />
             &nbsp;
             <%: Html.ActionLink("Cancelar", "Index", "InformeAccidenteVehicular", routeValues: null, htmlAttributes: new {@class="btn", onclick = "return confirm('¿Desea salir de Ingresar Informe de Accidente Vehicular?')" })%>
         </td>
@@ -197,7 +198,6 @@
             var Tx_DanosProducidos = $("#Tx_DanosProducidos").val();
             var Fe_InformeAccidentVehicular = $("#Fe_InformeAccidentVehicular").val();
 
-
             if (co_Siniestro != ''
                 && dsDepartamentoList != ''
                 && dsProvinciaList != ''
@@ -206,7 +206,8 @@
                 && Tx_DanosProducidos != ''
                 && Fe_InformeAccidentVehicular != ''
                 ) {
-                $("#form1").submit();
+                alert(Fe_InformeAccidentVehicular);
+                $("form").submit();
                 return true;
             } else {
                 $("#errorMessage").text("Ingrese todos los datos");

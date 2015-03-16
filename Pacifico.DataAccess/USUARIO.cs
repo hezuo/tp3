@@ -14,8 +14,15 @@ namespace Pacifico.DataAccess
     
     public partial class USUARIO
     {
+        public USUARIO()
+        {
+            this.LIQUIDACION_VEHICULAR = new HashSet<LIQUIDACION_VEHICULAR>();
+        }
+    
         public int Co_Usuario { get; set; }
         public string No_Usuario { get; set; }
         public string Tx_Password { get; set; }
+    
+        public virtual ICollection<LIQUIDACION_VEHICULAR> LIQUIDACION_VEHICULAR { get; set; }
     }
 }

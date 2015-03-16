@@ -16,6 +16,7 @@ namespace Pacifico.DataAccess
     {
         public PRESTADORA()
         {
+            this.EVALUACION_PRESTADORA = new HashSet<EVALUACION_PRESTADORA>();
             this.SEDE = new HashSet<SEDE>();
             this.SOLICITUD_AFILIACION = new HashSet<SOLICITUD_AFILIACION>();
         }
@@ -39,6 +40,7 @@ namespace Pacifico.DataAccess
         public string No_UsuarioUpd { get; set; }
     
         public virtual DISTRITO DISTRITO { get; set; }
+        public virtual ICollection<EVALUACION_PRESTADORA> EVALUACION_PRESTADORA { get; set; }
         public virtual ICollection<SEDE> SEDE { get; set; }
         public virtual ICollection<SOLICITUD_AFILIACION> SOLICITUD_AFILIACION { get; set; }
     }

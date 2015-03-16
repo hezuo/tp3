@@ -194,6 +194,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformeAccidenteVehicularController.cs" />
     <Compile Include="Controllers\Informe_ProcuradoriaController.cs" />
+    <Compile Include="Controllers\LiquidacionVehicularController.cs" />
     <Compile Include="Controllers\PrestadoraController.cs" />
     <Compile Include="Controllers\PresupuestoDetalleController.cs" />
     <Compile Include="Controllers\SedeController.cs" />
@@ -357,6 +358,9 @@
     <Content Include="Views\Informe_Procuradoria\Details.aspx" />
     <Content Include="Views\Informe_Procuradoria\Edit.aspx" />
     <Content Include="Views\Informe_Procuradoria\Index.aspx" />
+    <Content Include="Views\LiquidacionVehicular\Edit.aspx" />
+    <Content Include="Views\LiquidacionVehicular\Create.aspx" />
+    <Content Include="Views\LiquidacionVehicular\Index.aspx" />
     <Content Include="Views\Prestadora\Create.aspx" />
     <Content Include="Views\Prestadora\Details.aspx" />
     <Content Include="Views\Prestadora\Edit.aspx" />

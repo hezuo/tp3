@@ -66,6 +66,9 @@
     <Compile Include="CERT_MEDICO_DEFUNCION.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
+    <Compile Include="CRITERIO_EVALUACION.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
     <Compile Include="DEPARTAMENTO.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
@@ -87,6 +90,9 @@
     <Compile Include="ESTADO_SOLICITUD.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
+    <Compile Include="EVALUACION_PRESTADORA.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
     <Compile Include="EXPEDIENTE.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
@@ -99,10 +105,16 @@
     <Compile Include="INFORME_ACCIDENTE_VEHICULAR.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
+    <Compile Include="INFORME_INSPECTORIA.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
     <Compile Include="INFORME_PROCURADORIA.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
     <Compile Include="INVITACION.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LIQUIDACION_VEHICULAR.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
     <Compile Include="MARCA_VEHICULO.cs">
@@ -173,9 +185,6 @@
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
     <Compile Include="SINIESTRO.cs">
-      <DependentUpon>Pacifico.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SINIESTRO_VEHICULAR.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
     <Compile Include="SOLICITUD_AFILIACION.cs">

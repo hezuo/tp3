@@ -18,6 +18,7 @@ namespace Pacifico.DataAccess
         {
             this.CERT_MEDICO_DEFUNCION = new HashSet<CERT_MEDICO_DEFUNCION>();
             this.HISTORIAL_CLINICO = new HashSet<HISTORIAL_CLINICO>();
+            this.INFORME_INSPECTORIA = new HashSet<INFORME_INSPECTORIA>();
             this.INFORME_PROCURADORIA = new HashSet<INFORME_PROCURADORIA>();
             this.POLIZA_VIDA = new HashSet<POLIZA_VIDA>();
             this.PROT_JURADA_DOMICILIO = new HashSet<PROT_JURADA_DOMICILIO>();
@@ -31,6 +32,7 @@ namespace Pacifico.DataAccess
         public virtual BENEFICIARIO BENEFICIARIO { get; set; }
         public virtual ICollection<CERT_MEDICO_DEFUNCION> CERT_MEDICO_DEFUNCION { get; set; }
         public virtual ICollection<HISTORIAL_CLINICO> HISTORIAL_CLINICO { get; set; }
+        public virtual ICollection<INFORME_INSPECTORIA> INFORME_INSPECTORIA { get; set; }
         public virtual ICollection<INFORME_PROCURADORIA> INFORME_PROCURADORIA { get; set; }
         public virtual ICollection<POLIZA_VIDA> POLIZA_VIDA { get; set; }
         public virtual ICollection<PROT_JURADA_DOMICILIO> PROT_JURADA_DOMICILIO { get; set; }

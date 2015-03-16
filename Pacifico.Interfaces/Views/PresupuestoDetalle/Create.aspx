@@ -134,7 +134,7 @@
            
                 
                 var total = precio * cantidad;
-                var newtr = '<tr id="trArt' + articulo + '"><td><a href="#" class="editar_articulo" data-artparent="trArt' + articulo + '" data-artid="' + articulo + '"  data-precio="' + precio + '"><span class="icon-pencil">e</span></a></td><td><input type="hidden" name="articulos[]" value="' + articulo + '" /> <input type="hidden" class="cantidad" name="cant_articulos[]" value="' + cantidad + '" /><input type="hidden" class="cantidad" name="precios_articulos[]" value="' + total + '" />' + artDesc + '</td><td class="precio">' + precio + '</td><td>' + cantidad + '</td><td class="sub_total">' + total + '</td></tr>';
+                var newtr = '<tr id="trArt' + articulo + '"><td><a href="#" class="editar_articulo" data-artparent="trArt' + articulo + '" data-artid="' + articulo + '"  data-precio="' + precio + '"><span class="icon-pencil">e</span></a></td><td><input type="hidden" name="articulos[]" value="' + articulo + '" /> <input type="hidden" class="cantidad" name="cant_articulos[]" value="' + cantidad + '" /><input type="hidden" class="cantidad" name="precios_articulos[]" value="' + precio + '" />' + artDesc + '</td><td class="precio">' + precio + '</td><td>' + cantidad + '</td><td class="sub_total">' + total + '</td></tr>';
                 if ($("#tblArticulo tr#trArt" + articulo).length == 1) {
                     $("#tblArticulo tr#trArt" + articulo).replaceWith(newtr);
                 } else {

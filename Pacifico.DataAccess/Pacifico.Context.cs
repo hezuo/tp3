@@ -31,6 +31,7 @@ namespace Pacifico.DataAccess
         public DbSet<CARGO> CARGO { get; set; }
         public DbSet<CARTA_NOTARIAL> CARTA_NOTARIAL { get; set; }
         public DbSet<CERT_MEDICO_DEFUNCION> CERT_MEDICO_DEFUNCION { get; set; }
+        public DbSet<CRITERIO_EVALUACION> CRITERIO_EVALUACION { get; set; }
         public DbSet<DEPARTAMENTO> DEPARTAMENTO { get; set; }
         public DbSet<DISTRITO> DISTRITO { get; set; }
         public DbSet<DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR> DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR { get; set; }
@@ -38,12 +39,15 @@ namespace Pacifico.DataAccess
         public DbSet<ESPECIALIDAD> ESPECIALIDAD { get; set; }
         public DbSet<ESTADO_SINIESTRO> ESTADO_SINIESTRO { get; set; }
         public DbSet<ESTADO_SOLICITUD> ESTADO_SOLICITUD { get; set; }
+        public DbSet<EVALUACION_PRESTADORA> EVALUACION_PRESTADORA { get; set; }
         public DbSet<EXPEDIENTE> EXPEDIENTE { get; set; }
         public DbSet<FORMA_PAGO> FORMA_PAGO { get; set; }
         public DbSet<HISTORIAL_CLINICO> HISTORIAL_CLINICO { get; set; }
         public DbSet<INFORME_ACCIDENTE_VEHICULAR> INFORME_ACCIDENTE_VEHICULAR { get; set; }
+        public DbSet<INFORME_INSPECTORIA> INFORME_INSPECTORIA { get; set; }
         public DbSet<INFORME_PROCURADORIA> INFORME_PROCURADORIA { get; set; }
         public DbSet<INVITACION> INVITACION { get; set; }
+        public DbSet<LIQUIDACION_VEHICULAR> LIQUIDACION_VEHICULAR { get; set; }
         public DbSet<MARCA_VEHICULO> MARCA_VEHICULO { get; set; }
         public DbSet<MODELO_VEHICULO> MODELO_VEHICULO { get; set; }
         public DbSet<MOTOR_VEHICULO> MOTOR_VEHICULO { get; set; }
@@ -62,7 +66,6 @@ namespace Pacifico.DataAccess
         public DbSet<SERVICIO> SERVICIO { get; set; }
         public DbSet<SERVICIO_SEDE> SERVICIO_SEDE { get; set; }
         public DbSet<SINIESTRO> SINIESTRO { get; set; }
-        public DbSet<SINIESTRO_VEHICULAR> SINIESTRO_VEHICULAR { get; set; }
         public DbSet<SOLICITUD_AFILIACION> SOLICITUD_AFILIACION { get; set; }
         public DbSet<TIPO_POLIZA_VEHICULAR> TIPO_POLIZA_VEHICULAR { get; set; }
         public DbSet<TIPO_SINIESTRO> TIPO_SINIESTRO { get; set; }

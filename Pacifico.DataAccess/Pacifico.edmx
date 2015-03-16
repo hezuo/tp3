@@ -12,6 +12,7 @@
           <EntitySet Name="CARGO" EntityType="PACIFICOModel.Store.CARGO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CARTA_NOTARIAL" EntityType="PACIFICOModel.Store.CARTA_NOTARIAL" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CERT_MEDICO_DEFUNCION" EntityType="PACIFICOModel.Store.CERT_MEDICO_DEFUNCION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CRITERIO_EVALUACION" EntityType="PACIFICOModel.Store.CRITERIO_EVALUACION" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DEPARTAMENTO" EntityType="PACIFICOModel.Store.DEPARTAMENTO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DISTRITO" EntityType="PACIFICOModel.Store.DISTRITO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR" EntityType="PACIFICOModel.Store.DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR" store:Type="Tables" Schema="dbo" />
@@ -19,12 +20,15 @@
           <EntitySet Name="ESPECIALIDAD" EntityType="PACIFICOModel.Store.ESPECIALIDAD" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ESTADO_SINIESTRO" EntityType="PACIFICOModel.Store.ESTADO_SINIESTRO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ESTADO_SOLICITUD" EntityType="PACIFICOModel.Store.ESTADO_SOLICITUD" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EVALUACION_PRESTADORA" EntityType="PACIFICOModel.Store.EVALUACION_PRESTADORA" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="EXPEDIENTE" EntityType="PACIFICOModel.Store.EXPEDIENTE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FORMA_PAGO" EntityType="PACIFICOModel.Store.FORMA_PAGO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="HISTORIAL_CLINICO" EntityType="PACIFICOModel.Store.HISTORIAL_CLINICO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="INFORME_ACCIDENTE_VEHICULAR" EntityType="PACIFICOModel.Store.INFORME_ACCIDENTE_VEHICULAR" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="INFORME_INSPECTORIA" EntityType="PACIFICOModel.Store.INFORME_INSPECTORIA" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="INFORME_PROCURADORIA" EntityType="PACIFICOModel.Store.INFORME_PROCURADORIA" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="INVITACION" EntityType="PACIFICOModel.Store.INVITACION" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LIQUIDACION_VEHICULAR" EntityType="PACIFICOModel.Store.LIQUIDACION_VEHICULAR" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MARCA_VEHICULO" EntityType="PACIFICOModel.Store.MARCA_VEHICULO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MODELO_VEHICULO" EntityType="PACIFICOModel.Store.MODELO_VEHICULO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="MOTOR_VEHICULO" EntityType="PACIFICOModel.Store.MOTOR_VEHICULO" store:Type="Tables" Schema="dbo" />
@@ -43,7 +47,6 @@
           <EntitySet Name="SERVICIO" EntityType="PACIFICOModel.Store.SERVICIO" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SERVICIO_SEDE" EntityType="PACIFICOModel.Store.SERVICIO_SEDE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SINIESTRO" EntityType="PACIFICOModel.Store.SINIESTRO" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SINIESTRO_VEHICULAR" EntityType="PACIFICOModel.Store.SINIESTRO_VEHICULAR" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SOLICITUD_AFILIACION" EntityType="PACIFICOModel.Store.SOLICITUD_AFILIACION" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TIPO_POLIZA_VEHICULAR" EntityType="PACIFICOModel.Store.TIPO_POLIZA_VEHICULAR" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TIPO_SINIESTRO" EntityType="PACIFICOModel.Store.TIPO_SINIESTRO" store:Type="Tables" Schema="dbo" />
@@ -53,7 +56,7 @@
             <End Role="DISTRITO" EntitySet="DISTRITO" />
             <End Role="ASEGURADO" EntitySet="ASEGURADO" />
           </AssociationSet>
-          <AssociationSet Name="FK_CARTA_NOTARIAL_Co_NumInfProc" Association="PACIFICOModel.Store.FK_CARTA_NOTARIAL_Co_NumInfProc">
+          <AssociationSet Name="FK_CARTA_NOTARIAL_CoNumInfProc" Association="PACIFICOModel.Store.FK_CARTA_NOTARIAL_CoNumInfProc">
             <End Role="INFORME_PROCURADORIA" EntitySet="INFORME_PROCURADORIA" />
             <End Role="CARTA_NOTARIAL" EntitySet="CARTA_NOTARIAL" />
           </AssociationSet>
@@ -81,6 +84,14 @@
             <End Role="DISTRITO" EntitySet="DISTRITO" />
             <End Role="EMPLEADO" EntitySet="EMPLEADO" />
           </AssociationSet>
+          <AssociationSet Name="FK_EVALUACION_PRESTADORA_CoCriterio" Association="PACIFICOModel.Store.FK_EVALUACION_PRESTADORA_CoCriterio">
+            <End Role="CRITERIO_EVALUACION" EntitySet="CRITERIO_EVALUACION" />
+            <End Role="EVALUACION_PRESTADORA" EntitySet="EVALUACION_PRESTADORA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EVALUACION_PRESTADORA_CoPrestadora" Association="PACIFICOModel.Store.FK_EVALUACION_PRESTADORA_CoPrestadora">
+            <End Role="PRESTADORA" EntitySet="PRESTADORA" />
+            <End Role="EVALUACION_PRESTADORA" EntitySet="EVALUACION_PRESTADORA" />
+          </AssociationSet>
           <AssociationSet Name="FK_EXPEDIENTE_CoAsegurado" Association="PACIFICOModel.Store.FK_EXPEDIENTE_CoAsegurado">
             <End Role="ASEGURADO" EntitySet="ASEGURADO" />
             <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
@@ -97,9 +108,21 @@
             <End Role="SINIESTRO" EntitySet="SINIESTRO" />
             <End Role="INFORME_ACCIDENTE_VEHICULAR" EntitySet="INFORME_ACCIDENTE_VEHICULAR" />
           </AssociationSet>
+          <AssociationSet Name="FK_INFORME_INSPECTORIA_CoExpediente" Association="PACIFICOModel.Store.FK_INFORME_INSPECTORIA_CoExpediente">
+            <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+            <End Role="INFORME_INSPECTORIA" EntitySet="INFORME_INSPECTORIA" />
+          </AssociationSet>
           <AssociationSet Name="FK_INFORME_PROCURADORIA_CoExpediente" Association="PACIFICOModel.Store.FK_INFORME_PROCURADORIA_CoExpediente">
             <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
             <End Role="INFORME_PROCURADORIA" EntitySet="INFORME_PROCURADORIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIQUIDACION_VEHICULAR_Co_Usuario" Association="PACIFICOModel.Store.FK_LIQUIDACION_VEHICULAR_Co_Usuario">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="LIQUIDACION_VEHICULAR" EntitySet="LIQUIDACION_VEHICULAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIQUIDACION_VEHICULAR_CoSiniestro" Association="PACIFICOModel.Store.FK_LIQUIDACION_VEHICULAR_CoSiniestro">
+            <End Role="SINIESTRO" EntitySet="SINIESTRO" />
+            <End Role="LIQUIDACION_VEHICULAR" EntitySet="LIQUIDACION_VEHICULAR" />
           </AssociationSet>
           <AssociationSet Name="FK_MODELO_VEHICULO_CoMarcaVehiculo" Association="PACIFICOModel.Store.FK_MODELO_VEHICULO_CoMarcaVehiculo">
             <End Role="MARCA_VEHICULO" EntitySet="MARCA_VEHICULO" />
@@ -320,6 +343,15 @@
           <Property Name="Nu_Siniestro" Type="varchar" MaxLength="50" />
           <Property Name="Co_Expediente" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="CRITERIO_EVALUACION">
+          <Key>
+            <PropertyRef Name="Co_Criterio" />
+          </Key>
+          <Property Name="Co_Criterio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="No_Criterio" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Tx_Descripcion" Type="varchar" Nullable="false" MaxLength="300" />
+          <Property Name="Po_Peso" Type="decimal" Nullable="false" />
+        </EntityType>
         <EntityType Name="DEPARTAMENTO">
           <Key>
             <PropertyRef Name="Co_Departamento" />
@@ -388,6 +420,16 @@
           <Property Name="Co_Estado" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="No_Estado" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <EntityType Name="EVALUACION_PRESTADORA">
+          <Key>
+            <PropertyRef Name="Co_Prestadora" />
+            <PropertyRef Name="Co_Criterio" />
+          </Key>
+          <Property Name="Co_Prestadora" Type="int" Nullable="false" />
+          <Property Name="Co_Criterio" Type="int" Nullable="false" />
+          <Property Name="Nu_Puntaje" Type="decimal" Nullable="false" />
+          <Property Name="Tx_Observacion" Type="varchar" MaxLength="300" />
+        </EntityType>
         <EntityType Name="EXPEDIENTE">
           <Key>
             <PropertyRef Name="Co_Expediente" />
@@ -428,6 +470,19 @@
           <Property Name="Co_Distrito" Type="int" Nullable="false" />
           <Property Name="Tx_DanosProducidos" Type="text" Nullable="false" />
         </EntityType>
+        <EntityType Name="INFORME_INSPECTORIA">
+          <Key>
+            <PropertyRef Name="Co_NumInfInspect" />
+          </Key>
+          <Property Name="Co_NumInfInspect" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Fl_IndiciosDolo" Type="tinyint" />
+          <Property Name="Tx_Conclusiones" Type="varchar" MaxLength="255" />
+          <Property Name="Fl_DocAnali" Type="tinyint" />
+          <Property Name="Tx_DocsObs" Type="varchar" MaxLength="10" />
+          <Property Name="Fe_Emision" Type="datetime" />
+          <Property Name="Tx_Resultados" Type="varchar" MaxLength="10" />
+          <Property Name="Co_Expediente" Type="int" />
+        </EntityType>
         <EntityType Name="INFORME_PROCURADORIA">
           <Key>
             <PropertyRef Name="Co_NumInfProc" />
@@ -451,6 +506,17 @@
           <Property Name="No_UsuarioIns" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="Fe_RegistroUpd" Type="datetime" Nullable="false" />
           <Property Name="No_UsuarioUpd" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="LIQUIDACION_VEHICULAR">
+          <Key>
+            <PropertyRef Name="Co_LiquidacionVehicular" />
+          </Key>
+          <Property Name="Co_LiquidacionVehicular" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Co_Siniestro" Type="int" Nullable="false" />
+          <Property Name="Tx_Observaciones" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Tx_Estado" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Co_Usuario" Type="int" Nullable="false" />
+          <Property Name="Fe_Registro" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MARCA_VEHICULO">
           <Key>
@@ -641,6 +707,8 @@
           <Property Name="Co_Red" Type="int" />
           <Property Name="Po_Copago" Type="decimal" Nullable="false" />
           <Property Name="Po_Cobertura" Type="decimal" Nullable="false" />
+          <Property Name="Tx_Estado" Type="varchar" MaxLength="50" />
+          <Property Name="Tx_Observacion" Type="varchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="SINIESTRO">
           <Key>
@@ -656,15 +724,6 @@
           <Property Name="Co_TipoSiniestro" Type="int" Nullable="false" />
           <Property Name="Co_PolizaVehicular" Type="int" Nullable="false" />
           <Property Name="Co_EstadoSiniestro" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="SINIESTRO_VEHICULAR">
-          <Key>
-            <PropertyRef Name="Co_Siniestro" />
-          </Key>
-          <Property Name="Co_Siniestro" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="No_Asegurado" Type="varchar" Nullable="false" MaxLength="160" />
-          <Property Name="Nu_Placa" Type="varchar" Nullable="false" MaxLength="160" />
-          <Property Name="Nu_PolizaVehicular" Type="varchar" MaxLength="160" />
         </EntityType>
         <EntityType Name="SOLICITUD_AFILIACION">
           <Key>
@@ -737,7 +796,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CARTA_NOTARIAL_Co_NumInfProc">
+        <Association Name="FK_CARTA_NOTARIAL_CoNumInfProc">
           <End Role="INFORME_PROCURADORIA" Type="PACIFICOModel.Store.INFORME_PROCURADORIA" Multiplicity="1" />
           <End Role="CARTA_NOTARIAL" Type="PACIFICOModel.Store.CARTA_NOTARIAL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -821,6 +880,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EVALUACION_PRESTADORA_CoCriterio">
+          <End Role="CRITERIO_EVALUACION" Type="PACIFICOModel.Store.CRITERIO_EVALUACION" Multiplicity="1" />
+          <End Role="EVALUACION_PRESTADORA" Type="PACIFICOModel.Store.EVALUACION_PRESTADORA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRITERIO_EVALUACION">
+              <PropertyRef Name="Co_Criterio" />
+            </Principal>
+            <Dependent Role="EVALUACION_PRESTADORA">
+              <PropertyRef Name="Co_Criterio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EVALUACION_PRESTADORA_CoPrestadora">
+          <End Role="PRESTADORA" Type="PACIFICOModel.Store.PRESTADORA" Multiplicity="1" />
+          <End Role="EVALUACION_PRESTADORA" Type="PACIFICOModel.Store.EVALUACION_PRESTADORA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRESTADORA">
+              <PropertyRef Name="Co_Prestadora" />
+            </Principal>
+            <Dependent Role="EVALUACION_PRESTADORA">
+              <PropertyRef Name="Co_Prestadora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EXPEDIENTE_CoAsegurado">
           <End Role="ASEGURADO" Type="PACIFICOModel.Store.ASEGURADO" Multiplicity="0..1" />
           <End Role="EXPEDIENTE" Type="PACIFICOModel.Store.EXPEDIENTE" Multiplicity="*" />
@@ -869,6 +952,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_INFORME_INSPECTORIA_CoExpediente">
+          <End Role="EXPEDIENTE" Type="PACIFICOModel.Store.EXPEDIENTE" Multiplicity="0..1" />
+          <End Role="INFORME_INSPECTORIA" Type="PACIFICOModel.Store.INFORME_INSPECTORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXPEDIENTE">
+              <PropertyRef Name="Co_Expediente" />
+            </Principal>
+            <Dependent Role="INFORME_INSPECTORIA">
+              <PropertyRef Name="Co_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_INFORME_PROCURADORIA_CoExpediente">
           <End Role="EXPEDIENTE" Type="PACIFICOModel.Store.EXPEDIENTE" Multiplicity="1" />
           <End Role="INFORME_PROCURADORIA" Type="PACIFICOModel.Store.INFORME_PROCURADORIA" Multiplicity="*" />
@@ -878,6 +973,30 @@
             </Principal>
             <Dependent Role="INFORME_PROCURADORIA">
               <PropertyRef Name="Co_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIQUIDACION_VEHICULAR_Co_Usuario">
+          <End Role="USUARIO" Type="PACIFICOModel.Store.USUARIO" Multiplicity="1" />
+          <End Role="LIQUIDACION_VEHICULAR" Type="PACIFICOModel.Store.LIQUIDACION_VEHICULAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="Co_Usuario" />
+            </Principal>
+            <Dependent Role="LIQUIDACION_VEHICULAR">
+              <PropertyRef Name="Co_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIQUIDACION_VEHICULAR_CoSiniestro">
+          <End Role="SINIESTRO" Type="PACIFICOModel.Store.SINIESTRO" Multiplicity="1" />
+          <End Role="LIQUIDACION_VEHICULAR" Type="PACIFICOModel.Store.LIQUIDACION_VEHICULAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINIESTRO">
+              <PropertyRef Name="Co_Siniestro" />
+            </Principal>
+            <Dependent Role="LIQUIDACION_VEHICULAR">
+              <PropertyRef Name="Co_Siniestro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1288,6 +1407,7 @@
           <EntitySet Name="CARGO" EntityType="PACIFICOModel.CARGO" />
           <EntitySet Name="CARTA_NOTARIAL" EntityType="PACIFICOModel.CARTA_NOTARIAL" />
           <EntitySet Name="CERT_MEDICO_DEFUNCION" EntityType="PACIFICOModel.CERT_MEDICO_DEFUNCION" />
+          <EntitySet Name="CRITERIO_EVALUACION" EntityType="PACIFICOModel.CRITERIO_EVALUACION" />
           <EntitySet Name="DEPARTAMENTO" EntityType="PACIFICOModel.DEPARTAMENTO" />
           <EntitySet Name="DISTRITO" EntityType="PACIFICOModel.DISTRITO" />
           <EntitySet Name="DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR" EntityType="PACIFICOModel.DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR" />
@@ -1295,12 +1415,15 @@
           <EntitySet Name="ESPECIALIDAD" EntityType="PACIFICOModel.ESPECIALIDAD" />
           <EntitySet Name="ESTADO_SINIESTRO" EntityType="PACIFICOModel.ESTADO_SINIESTRO" />
           <EntitySet Name="ESTADO_SOLICITUD" EntityType="PACIFICOModel.ESTADO_SOLICITUD" />
+          <EntitySet Name="EVALUACION_PRESTADORA" EntityType="PACIFICOModel.EVALUACION_PRESTADORA" />
           <EntitySet Name="EXPEDIENTE" EntityType="PACIFICOModel.EXPEDIENTE" />
           <EntitySet Name="FORMA_PAGO" EntityType="PACIFICOModel.FORMA_PAGO" />
           <EntitySet Name="HISTORIAL_CLINICO" EntityType="PACIFICOModel.HISTORIAL_CLINICO" />
           <EntitySet Name="INFORME_ACCIDENTE_VEHICULAR" EntityType="PACIFICOModel.INFORME_ACCIDENTE_VEHICULAR" />
+          <EntitySet Name="INFORME_INSPECTORIA" EntityType="PACIFICOModel.INFORME_INSPECTORIA" />
           <EntitySet Name="INFORME_PROCURADORIA" EntityType="PACIFICOModel.INFORME_PROCURADORIA" />
           <EntitySet Name="INVITACION" EntityType="PACIFICOModel.INVITACION" />
+          <EntitySet Name="LIQUIDACION_VEHICULAR" EntityType="PACIFICOModel.LIQUIDACION_VEHICULAR" />
           <EntitySet Name="MARCA_VEHICULO" EntityType="PACIFICOModel.MARCA_VEHICULO" />
           <EntitySet Name="MODELO_VEHICULO" EntityType="PACIFICOModel.MODELO_VEHICULO" />
           <EntitySet Name="MOTOR_VEHICULO" EntityType="PACIFICOModel.MOTOR_VEHICULO" />
@@ -1319,7 +1442,6 @@
           <EntitySet Name="SERVICIO" EntityType="PACIFICOModel.SERVICIO" />
           <EntitySet Name="SERVICIO_SEDE" EntityType="PACIFICOModel.SERVICIO_SEDE" />
           <EntitySet Name="SINIESTRO" EntityType="PACIFICOModel.SINIESTRO" />
-          <EntitySet Name="SINIESTRO_VEHICULAR" EntityType="PACIFICOModel.SINIESTRO_VEHICULAR" />
           <EntitySet Name="SOLICITUD_AFILIACION" EntityType="PACIFICOModel.SOLICITUD_AFILIACION" />
           <EntitySet Name="TIPO_POLIZA_VEHICULAR" EntityType="PACIFICOModel.TIPO_POLIZA_VEHICULAR" />
           <EntitySet Name="TIPO_SINIESTRO" EntityType="PACIFICOModel.TIPO_SINIESTRO" />
@@ -1349,7 +1471,7 @@
             <End Role="CARGO" EntitySet="CARGO" />
             <End Role="EMPLEADO" EntitySet="EMPLEADO" />
           </AssociationSet>
-          <AssociationSet Name="FK_CARTA_NOTARIAL_Co_NumInfProc" Association="PACIFICOModel.FK_CARTA_NOTARIAL_Co_NumInfProc">
+          <AssociationSet Name="FK_CARTA_NOTARIAL_CoNumInfProc" Association="PACIFICOModel.FK_CARTA_NOTARIAL_CoNumInfProc">
             <End Role="INFORME_PROCURADORIA" EntitySet="INFORME_PROCURADORIA" />
             <End Role="CARTA_NOTARIAL" EntitySet="CARTA_NOTARIAL" />
           </AssociationSet>
@@ -1360,6 +1482,10 @@
           <AssociationSet Name="FK_CERT_MEDICO_DEFUNCION_CoExpediente" Association="PACIFICOModel.FK_CERT_MEDICO_DEFUNCION_CoExpediente">
             <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
             <End Role="CERT_MEDICO_DEFUNCION" EntitySet="CERT_MEDICO_DEFUNCION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EVALUACION_PRESTADORA_CoCriterio" Association="PACIFICOModel.FK_EVALUACION_PRESTADORA_CoCriterio">
+            <End Role="CRITERIO_EVALUACION" EntitySet="CRITERIO_EVALUACION" />
+            <End Role="EVALUACION_PRESTADORA" EntitySet="EVALUACION_PRESTADORA" />
           </AssociationSet>
           <AssociationSet Name="FK_PROVINCIA_CoDepartamento" Association="PACIFICOModel.FK_PROVINCIA_CoDepartamento">
             <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
@@ -1409,9 +1535,17 @@
             <End Role="ESTADO_SOLICITUD" EntitySet="ESTADO_SOLICITUD" />
             <End Role="SOLICITUD_AFILIACION" EntitySet="SOLICITUD_AFILIACION" />
           </AssociationSet>
+          <AssociationSet Name="FK_EVALUACION_PRESTADORA_CoPrestadora" Association="PACIFICOModel.FK_EVALUACION_PRESTADORA_CoPrestadora">
+            <End Role="PRESTADORA" EntitySet="PRESTADORA" />
+            <End Role="EVALUACION_PRESTADORA" EntitySet="EVALUACION_PRESTADORA" />
+          </AssociationSet>
           <AssociationSet Name="FK_HISTORIAL_CLINICO_CoExpediente" Association="PACIFICOModel.FK_HISTORIAL_CLINICO_CoExpediente">
             <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
             <End Role="HISTORIAL_CLINICO" EntitySet="HISTORIAL_CLINICO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INFORME_INSPECTORIA_CoExpediente" Association="PACIFICOModel.FK_INFORME_INSPECTORIA_CoExpediente">
+            <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
+            <End Role="INFORME_INSPECTORIA" EntitySet="INFORME_INSPECTORIA" />
           </AssociationSet>
           <AssociationSet Name="FK_INFORME_PROCURADORIA_CoExpediente" Association="PACIFICOModel.FK_INFORME_PROCURADORIA_CoExpediente">
             <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
@@ -1440,6 +1574,14 @@
           <AssociationSet Name="FK_SOLICITUD_AFILIACION_CoInvitacion" Association="PACIFICOModel.FK_SOLICITUD_AFILIACION_CoInvitacion">
             <End Role="INVITACION" EntitySet="INVITACION" />
             <End Role="SOLICITUD_AFILIACION" EntitySet="SOLICITUD_AFILIACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIQUIDACION_VEHICULAR_Co_Usuario" Association="PACIFICOModel.FK_LIQUIDACION_VEHICULAR_Co_Usuario">
+            <End Role="USUARIO" EntitySet="USUARIO" />
+            <End Role="LIQUIDACION_VEHICULAR" EntitySet="LIQUIDACION_VEHICULAR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LIQUIDACION_VEHICULAR_CoSiniestro" Association="PACIFICOModel.FK_LIQUIDACION_VEHICULAR_CoSiniestro">
+            <End Role="SINIESTRO" EntitySet="SINIESTRO" />
+            <End Role="LIQUIDACION_VEHICULAR" EntitySet="LIQUIDACION_VEHICULAR" />
           </AssociationSet>
           <AssociationSet Name="FK_MODELO_VEHICULO_CoMarcaVehiculo" Association="PACIFICOModel.FK_MODELO_VEHICULO_CoMarcaVehiculo">
             <End Role="MARCA_VEHICULO" EntitySet="MARCA_VEHICULO" />
@@ -1586,7 +1728,7 @@
           <Property Type="DateTime" Name="Fe_Emision" Precision="3" />
           <Property Type="DateTime" Name="Fe_Recepcion" Precision="3" />
           <Property Type="Int32" Name="Co_NumInfProc" Nullable="false" />
-          <NavigationProperty Name="INFORME_PROCURADORIA" Relationship="PACIFICOModel.FK_CARTA_NOTARIAL_Co_NumInfProc" FromRole="CARTA_NOTARIAL" ToRole="INFORME_PROCURADORIA" />
+          <NavigationProperty Name="INFORME_PROCURADORIA" Relationship="PACIFICOModel.FK_CARTA_NOTARIAL_CoNumInfProc" FromRole="CARTA_NOTARIAL" ToRole="INFORME_PROCURADORIA" />
         </EntityType>
         <EntityType Name="CERT_MEDICO_DEFUNCION">
           <Key>
@@ -1604,6 +1746,16 @@
           <Property Type="Int32" Name="Co_Expediente" Nullable="false" />
           <NavigationProperty Name="DISTRITO" Relationship="PACIFICOModel.FK_CERT_MEDICO_DEFUNCION_CoDistrito" FromRole="CERT_MEDICO_DEFUNCION" ToRole="DISTRITO" />
           <NavigationProperty Name="EXPEDIENTE" Relationship="PACIFICOModel.FK_CERT_MEDICO_DEFUNCION_CoExpediente" FromRole="CERT_MEDICO_DEFUNCION" ToRole="EXPEDIENTE" />
+        </EntityType>
+        <EntityType Name="CRITERIO_EVALUACION">
+          <Key>
+            <PropertyRef Name="Co_Criterio" />
+          </Key>
+          <Property Type="Int32" Name="Co_Criterio" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="No_Criterio" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Tx_Descripcion" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Po_Peso" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="EVALUACION_PRESTADORA" Relationship="PACIFICOModel.FK_EVALUACION_PRESTADORA_CoCriterio" FromRole="CRITERIO_EVALUACION" ToRole="EVALUACION_PRESTADORA" />
         </EntityType>
         <EntityType Name="DEPARTAMENTO">
           <Key>
@@ -1689,6 +1841,18 @@
           <Property Type="String" Name="No_Estado" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SOLICITUD_AFILIACION" Relationship="PACIFICOModel.FK_SOLICITUD_AFILIACION_CoEstado" FromRole="ESTADO_SOLICITUD" ToRole="SOLICITUD_AFILIACION" />
         </EntityType>
+        <EntityType Name="EVALUACION_PRESTADORA">
+          <Key>
+            <PropertyRef Name="Co_Prestadora" />
+            <PropertyRef Name="Co_Criterio" />
+          </Key>
+          <Property Type="Int32" Name="Co_Prestadora" Nullable="false" />
+          <Property Type="Int32" Name="Co_Criterio" Nullable="false" />
+          <Property Type="Decimal" Name="Nu_Puntaje" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Tx_Observacion" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CRITERIO_EVALUACION" Relationship="PACIFICOModel.FK_EVALUACION_PRESTADORA_CoCriterio" FromRole="EVALUACION_PRESTADORA" ToRole="CRITERIO_EVALUACION" />
+          <NavigationProperty Name="PRESTADORA" Relationship="PACIFICOModel.FK_EVALUACION_PRESTADORA_CoPrestadora" FromRole="EVALUACION_PRESTADORA" ToRole="PRESTADORA" />
+        </EntityType>
         <EntityType Name="EXPEDIENTE">
           <Key>
             <PropertyRef Name="Co_Expediente" />
@@ -1700,6 +1864,7 @@
           <NavigationProperty Name="BENEFICIARIO" Relationship="PACIFICOModel.FK_EXPEDIENTE_CoBeneficiario" FromRole="EXPEDIENTE" ToRole="BENEFICIARIO" />
           <NavigationProperty Name="CERT_MEDICO_DEFUNCION" Relationship="PACIFICOModel.FK_CERT_MEDICO_DEFUNCION_CoExpediente" FromRole="EXPEDIENTE" ToRole="CERT_MEDICO_DEFUNCION" />
           <NavigationProperty Name="HISTORIAL_CLINICO" Relationship="PACIFICOModel.FK_HISTORIAL_CLINICO_CoExpediente" FromRole="EXPEDIENTE" ToRole="HISTORIAL_CLINICO" />
+          <NavigationProperty Name="INFORME_INSPECTORIA" Relationship="PACIFICOModel.FK_INFORME_INSPECTORIA_CoExpediente" FromRole="EXPEDIENTE" ToRole="INFORME_INSPECTORIA" />
           <NavigationProperty Name="INFORME_PROCURADORIA" Relationship="PACIFICOModel.FK_INFORME_PROCURADORIA_CoExpediente" FromRole="EXPEDIENTE" ToRole="INFORME_PROCURADORIA" />
           <NavigationProperty Name="POLIZA_VIDA" Relationship="PACIFICOModel.FK_POLIZA_VIDA_CoExpediente" FromRole="EXPEDIENTE" ToRole="POLIZA_VIDA" />
           <NavigationProperty Name="PROT_JURADA_DOMICILIO" Relationship="PACIFICOModel.FK_PROT_JURADA_DOMICILIO_CoExpediente" FromRole="EXPEDIENTE" ToRole="PROT_JURADA_DOMICILIO" />
@@ -1741,6 +1906,20 @@
           <NavigationProperty Name="DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR" Relationship="PACIFICOModel.FK_DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR_CoInformeAccidenteVehicular" FromRole="INFORME_ACCIDENTE_VEHICULAR" ToRole="DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR" />
           <NavigationProperty Name="SINIESTRO" Relationship="PACIFICOModel.FK_INFORME_ACCIDENTE_VEHICULAR_CoSiniestro" FromRole="INFORME_ACCIDENTE_VEHICULAR" ToRole="SINIESTRO" />
         </EntityType>
+        <EntityType Name="INFORME_INSPECTORIA">
+          <Key>
+            <PropertyRef Name="Co_NumInfInspect" />
+          </Key>
+          <Property Type="Int32" Name="Co_NumInfInspect" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Byte" Name="Fl_IndiciosDolo" />
+          <Property Type="String" Name="Tx_Conclusiones" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Byte" Name="Fl_DocAnali" />
+          <Property Type="String" Name="Tx_DocsObs" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Fe_Emision" Precision="3" />
+          <Property Type="String" Name="Tx_Resultados" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Co_Expediente" />
+          <NavigationProperty Name="EXPEDIENTE" Relationship="PACIFICOModel.FK_INFORME_INSPECTORIA_CoExpediente" FromRole="INFORME_INSPECTORIA" ToRole="EXPEDIENTE" />
+        </EntityType>
         <EntityType Name="INFORME_PROCURADORIA">
           <Key>
             <PropertyRef Name="Co_NumInfProc" />
@@ -1751,7 +1930,7 @@
           <Property Type="DateTime" Name="Fe_Emision" Precision="3" />
           <Property Type="Byte" Name="Fl_Aprobacion" />
           <Property Type="Int32" Name="Co_Expediente" Nullable="false" />
-          <NavigationProperty Name="CARTA_NOTARIAL" Relationship="PACIFICOModel.FK_CARTA_NOTARIAL_Co_NumInfProc" FromRole="INFORME_PROCURADORIA" ToRole="CARTA_NOTARIAL" />
+          <NavigationProperty Name="CARTA_NOTARIAL" Relationship="PACIFICOModel.FK_CARTA_NOTARIAL_CoNumInfProc" FromRole="INFORME_PROCURADORIA" ToRole="CARTA_NOTARIAL" />
           <NavigationProperty Name="EXPEDIENTE" Relationship="PACIFICOModel.FK_INFORME_PROCURADORIA_CoExpediente" FromRole="INFORME_PROCURADORIA" ToRole="EXPEDIENTE" />
         </EntityType>
         <EntityType Name="INVITACION">
@@ -1767,6 +1946,19 @@
           <Property Type="DateTime" Name="Fe_RegistroUpd" Nullable="false" Precision="3" />
           <Property Type="String" Name="No_UsuarioUpd" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SOLICITUD_AFILIACION" Relationship="PACIFICOModel.FK_SOLICITUD_AFILIACION_CoInvitacion" FromRole="INVITACION" ToRole="SOLICITUD_AFILIACION" />
+        </EntityType>
+        <EntityType Name="LIQUIDACION_VEHICULAR">
+          <Key>
+            <PropertyRef Name="Co_LiquidacionVehicular" />
+          </Key>
+          <Property Type="Int32" Name="Co_LiquidacionVehicular" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Co_Siniestro" Nullable="false" />
+          <Property Type="String" Name="Tx_Observaciones" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Tx_Estado" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Co_Usuario" Nullable="false" />
+          <Property Type="DateTime" Name="Fe_Registro" Nullable="false" Precision="3" />
+          <NavigationProperty Name="USUARIO" Relationship="PACIFICOModel.FK_LIQUIDACION_VEHICULAR_Co_Usuario" FromRole="LIQUIDACION_VEHICULAR" ToRole="USUARIO" />
+          <NavigationProperty Name="SINIESTRO" Relationship="PACIFICOModel.FK_LIQUIDACION_VEHICULAR_CoSiniestro" FromRole="LIQUIDACION_VEHICULAR" ToRole="SINIESTRO" />
         </EntityType>
         <EntityType Name="MARCA_VEHICULO">
           <Key>
@@ -1864,6 +2056,7 @@
           <Property Type="DateTime" Name="Fe_RegistroUpd" Nullable="false" Precision="3" />
           <Property Type="String" Name="No_UsuarioUpd" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="DISTRITO" Relationship="PACIFICOModel.FK_PRESTADORA_CoDistrito" FromRole="PRESTADORA" ToRole="DISTRITO" />
+          <NavigationProperty Name="EVALUACION_PRESTADORA" Relationship="PACIFICOModel.FK_EVALUACION_PRESTADORA_CoPrestadora" FromRole="PRESTADORA" ToRole="EVALUACION_PRESTADORA" />
           <NavigationProperty Name="SEDE" Relationship="PACIFICOModel.FK_SEDE_CoPrestadora" FromRole="PRESTADORA" ToRole="SEDE" />
           <NavigationProperty Name="SOLICITUD_AFILIACION" Relationship="PACIFICOModel.FK_SOLICITUD_AFILIACION_CoPrestadora" FromRole="PRESTADORA" ToRole="SOLICITUD_AFILIACION" />
         </EntityType>
@@ -1990,6 +2183,8 @@
           <Property Type="Int32" Name="Co_Red" />
           <Property Type="Decimal" Name="Po_Copago" Nullable="false" Precision="18" Scale="0" />
           <Property Type="Decimal" Name="Po_Cobertura" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Tx_Estado" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Tx_Observacion" MaxLength="300" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="RED" Relationship="PACIFICOModel.FK_SERVICIO_SEDE_CoRed" FromRole="SERVICIO_SEDE" ToRole="RED" />
           <NavigationProperty Name="SEDE" Relationship="PACIFICOModel.FK_SERVICIO_SEDE_CoSede" FromRole="SERVICIO_SEDE" ToRole="SEDE" />
           <NavigationProperty Name="SERVICIO" Relationship="PACIFICOModel.FK_SERVICIO_SEDE_CoServicio" FromRole="SERVICIO_SEDE" ToRole="SERVICIO" />
@@ -2010,19 +2205,11 @@
           <Property Type="Int32" Name="Co_EstadoSiniestro" Nullable="false" />
           <NavigationProperty Name="ESTADO_SINIESTRO" Relationship="PACIFICOModel.FK_SINIESTRO_CoEstadoSiniestro" FromRole="SINIESTRO" ToRole="ESTADO_SINIESTRO" />
           <NavigationProperty Name="INFORME_ACCIDENTE_VEHICULAR" Relationship="PACIFICOModel.FK_INFORME_ACCIDENTE_VEHICULAR_CoSiniestro" FromRole="SINIESTRO" ToRole="INFORME_ACCIDENTE_VEHICULAR" />
+          <NavigationProperty Name="LIQUIDACION_VEHICULAR" Relationship="PACIFICOModel.FK_LIQUIDACION_VEHICULAR_CoSiniestro" FromRole="SINIESTRO" ToRole="LIQUIDACION_VEHICULAR" />
           <NavigationProperty Name="POLIZA_VEHICULAR" Relationship="PACIFICOModel.FK_SINIESTRO_CoPolizaVehicular" FromRole="SINIESTRO" ToRole="POLIZA_VEHICULAR" />
           <NavigationProperty Name="PRESUPUESTO" Relationship="PACIFICOModel.FK_PRESUPUESTO_CoSiniestro" FromRole="SINIESTRO" ToRole="PRESUPUESTO" />
           <NavigationProperty Name="PROCURADOR" Relationship="PACIFICOModel.FK_SINIESTRO_CoProcurador" FromRole="SINIESTRO" ToRole="PROCURADOR" />
           <NavigationProperty Name="TIPO_SINIESTRO" Relationship="PACIFICOModel.FK_SINIESTRO_CoTipoSiniestro" FromRole="SINIESTRO" ToRole="TIPO_SINIESTRO" />
-        </EntityType>
-        <EntityType Name="SINIESTRO_VEHICULAR">
-          <Key>
-            <PropertyRef Name="Co_Siniestro" />
-          </Key>
-          <Property Type="Int32" Name="Co_Siniestro" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="No_Asegurado" Nullable="false" MaxLength="160" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Nu_Placa" Nullable="false" MaxLength="160" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Nu_PolizaVehicular" MaxLength="160" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SOLICITUD_AFILIACION">
           <Key>
@@ -2079,6 +2266,7 @@
           <Property Type="Int32" Name="Co_Usuario" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="No_Usuario" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Tx_Password" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LIQUIDACION_VEHICULAR" Relationship="PACIFICOModel.FK_LIQUIDACION_VEHICULAR_Co_Usuario" FromRole="USUARIO" ToRole="LIQUIDACION_VEHICULAR" />
         </EntityType>
         <EntityType Name="VEHICULO">
           <Key>
@@ -2165,7 +2353,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CARTA_NOTARIAL_Co_NumInfProc">
+        <Association Name="FK_CARTA_NOTARIAL_CoNumInfProc">
           <End Type="PACIFICOModel.INFORME_PROCURADORIA" Role="INFORME_PROCURADORIA" Multiplicity="1" />
           <End Type="PACIFICOModel.CARTA_NOTARIAL" Role="CARTA_NOTARIAL" Multiplicity="*" />
           <ReferentialConstraint>
@@ -2198,6 +2386,18 @@
             </Principal>
             <Dependent Role="CERT_MEDICO_DEFUNCION">
               <PropertyRef Name="Co_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EVALUACION_PRESTADORA_CoCriterio">
+          <End Type="PACIFICOModel.CRITERIO_EVALUACION" Role="CRITERIO_EVALUACION" Multiplicity="1" />
+          <End Type="PACIFICOModel.EVALUACION_PRESTADORA" Role="EVALUACION_PRESTADORA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CRITERIO_EVALUACION">
+              <PropertyRef Name="Co_Criterio" />
+            </Principal>
+            <Dependent Role="EVALUACION_PRESTADORA">
+              <PropertyRef Name="Co_Criterio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2345,6 +2545,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EVALUACION_PRESTADORA_CoPrestadora">
+          <End Type="PACIFICOModel.PRESTADORA" Role="PRESTADORA" Multiplicity="1" />
+          <End Type="PACIFICOModel.EVALUACION_PRESTADORA" Role="EVALUACION_PRESTADORA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRESTADORA">
+              <PropertyRef Name="Co_Prestadora" />
+            </Principal>
+            <Dependent Role="EVALUACION_PRESTADORA">
+              <PropertyRef Name="Co_Prestadora" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HISTORIAL_CLINICO_CoExpediente">
           <End Type="PACIFICOModel.EXPEDIENTE" Role="EXPEDIENTE" Multiplicity="1" />
           <End Type="PACIFICOModel.HISTORIAL_CLINICO" Role="HISTORIAL_CLINICO" Multiplicity="*" />
@@ -2353,6 +2565,18 @@
               <PropertyRef Name="Co_Expediente" />
             </Principal>
             <Dependent Role="HISTORIAL_CLINICO">
+              <PropertyRef Name="Co_Expediente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INFORME_INSPECTORIA_CoExpediente">
+          <End Type="PACIFICOModel.EXPEDIENTE" Role="EXPEDIENTE" Multiplicity="0..1" />
+          <End Type="PACIFICOModel.INFORME_INSPECTORIA" Role="INFORME_INSPECTORIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EXPEDIENTE">
+              <PropertyRef Name="Co_Expediente" />
+            </Principal>
+            <Dependent Role="INFORME_INSPECTORIA">
               <PropertyRef Name="Co_Expediente" />
             </Dependent>
           </ReferentialConstraint>
@@ -2438,6 +2662,30 @@
             </Principal>
             <Dependent Role="SOLICITUD_AFILIACION">
               <PropertyRef Name="Co_Invitacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIQUIDACION_VEHICULAR_Co_Usuario">
+          <End Type="PACIFICOModel.USUARIO" Role="USUARIO" Multiplicity="1" />
+          <End Type="PACIFICOModel.LIQUIDACION_VEHICULAR" Role="LIQUIDACION_VEHICULAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIO">
+              <PropertyRef Name="Co_Usuario" />
+            </Principal>
+            <Dependent Role="LIQUIDACION_VEHICULAR">
+              <PropertyRef Name="Co_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LIQUIDACION_VEHICULAR_CoSiniestro">
+          <End Type="PACIFICOModel.SINIESTRO" Role="SINIESTRO" Multiplicity="1" />
+          <End Type="PACIFICOModel.LIQUIDACION_VEHICULAR" Role="LIQUIDACION_VEHICULAR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SINIESTRO">
+              <PropertyRef Name="Co_Siniestro" />
+            </Principal>
+            <Dependent Role="LIQUIDACION_VEHICULAR">
+              <PropertyRef Name="Co_Siniestro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2743,6 +2991,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CRITERIO_EVALUACION">
+            <EntityTypeMapping TypeName="PACIFICOModel.CRITERIO_EVALUACION">
+              <MappingFragment StoreEntitySet="CRITERIO_EVALUACION">
+                <ScalarProperty Name="Po_Peso" ColumnName="Po_Peso" />
+                <ScalarProperty Name="Tx_Descripcion" ColumnName="Tx_Descripcion" />
+                <ScalarProperty Name="No_Criterio" ColumnName="No_Criterio" />
+                <ScalarProperty Name="Co_Criterio" ColumnName="Co_Criterio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DEPARTAMENTO">
             <EntityTypeMapping TypeName="PACIFICOModel.DEPARTAMENTO">
               <MappingFragment StoreEntitySet="DEPARTAMENTO">
@@ -2818,6 +3076,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EVALUACION_PRESTADORA">
+            <EntityTypeMapping TypeName="PACIFICOModel.EVALUACION_PRESTADORA">
+              <MappingFragment StoreEntitySet="EVALUACION_PRESTADORA">
+                <ScalarProperty Name="Tx_Observacion" ColumnName="Tx_Observacion" />
+                <ScalarProperty Name="Nu_Puntaje" ColumnName="Nu_Puntaje" />
+                <ScalarProperty Name="Co_Criterio" ColumnName="Co_Criterio" />
+                <ScalarProperty Name="Co_Prestadora" ColumnName="Co_Prestadora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="EXPEDIENTE">
             <EntityTypeMapping TypeName="PACIFICOModel.EXPEDIENTE">
               <MappingFragment StoreEntitySet="EXPEDIENTE">
@@ -2862,6 +3130,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="INFORME_INSPECTORIA">
+            <EntityTypeMapping TypeName="PACIFICOModel.INFORME_INSPECTORIA">
+              <MappingFragment StoreEntitySet="INFORME_INSPECTORIA">
+                <ScalarProperty Name="Co_Expediente" ColumnName="Co_Expediente" />
+                <ScalarProperty Name="Tx_Resultados" ColumnName="Tx_Resultados" />
+                <ScalarProperty Name="Fe_Emision" ColumnName="Fe_Emision" />
+                <ScalarProperty Name="Tx_DocsObs" ColumnName="Tx_DocsObs" />
+                <ScalarProperty Name="Fl_DocAnali" ColumnName="Fl_DocAnali" />
+                <ScalarProperty Name="Tx_Conclusiones" ColumnName="Tx_Conclusiones" />
+                <ScalarProperty Name="Fl_IndiciosDolo" ColumnName="Fl_IndiciosDolo" />
+                <ScalarProperty Name="Co_NumInfInspect" ColumnName="Co_NumInfInspect" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="INFORME_PROCURADORIA">
             <EntityTypeMapping TypeName="PACIFICOModel.INFORME_PROCURADORIA">
               <MappingFragment StoreEntitySet="INFORME_PROCURADORIA">
@@ -2885,6 +3167,18 @@
                 <ScalarProperty Name="Fe_Expiracion" ColumnName="Fe_Expiracion" />
                 <ScalarProperty Name="Fe_Invitacion" ColumnName="Fe_Invitacion" />
                 <ScalarProperty Name="Co_Invitacion" ColumnName="Co_Invitacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LIQUIDACION_VEHICULAR">
+            <EntityTypeMapping TypeName="PACIFICOModel.LIQUIDACION_VEHICULAR">
+              <MappingFragment StoreEntitySet="LIQUIDACION_VEHICULAR">
+                <ScalarProperty Name="Fe_Registro" ColumnName="Fe_Registro" />
+                <ScalarProperty Name="Co_Usuario" ColumnName="Co_Usuario" />
+                <ScalarProperty Name="Tx_Estado" ColumnName="Tx_Estado" />
+                <ScalarProperty Name="Tx_Observaciones" ColumnName="Tx_Observaciones" />
+                <ScalarProperty Name="Co_Siniestro" ColumnName="Co_Siniestro" />
+                <ScalarProperty Name="Co_LiquidacionVehicular" ColumnName="Co_LiquidacionVehicular" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3085,6 +3379,8 @@
           <EntitySetMapping Name="SERVICIO_SEDE">
             <EntityTypeMapping TypeName="PACIFICOModel.SERVICIO_SEDE">
               <MappingFragment StoreEntitySet="SERVICIO_SEDE">
+                <ScalarProperty Name="Tx_Observacion" ColumnName="Tx_Observacion" />
+                <ScalarProperty Name="Tx_Estado" ColumnName="Tx_Estado" />
                 <ScalarProperty Name="Po_Cobertura" ColumnName="Po_Cobertura" />
                 <ScalarProperty Name="Po_Copago" ColumnName="Po_Copago" />
                 <ScalarProperty Name="Co_Red" ColumnName="Co_Red" />
@@ -3105,16 +3401,6 @@
                 <ScalarProperty Name="Tx_Lugar" ColumnName="Tx_Lugar" />
                 <ScalarProperty Name="Tx_Descripcion" ColumnName="Tx_Descripcion" />
                 <ScalarProperty Name="Nu_Siniestro" ColumnName="Nu_Siniestro" />
-                <ScalarProperty Name="Co_Siniestro" ColumnName="Co_Siniestro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SINIESTRO_VEHICULAR">
-            <EntityTypeMapping TypeName="PACIFICOModel.SINIESTRO_VEHICULAR">
-              <MappingFragment StoreEntitySet="SINIESTRO_VEHICULAR">
-                <ScalarProperty Name="Nu_PolizaVehicular" ColumnName="Nu_PolizaVehicular" />
-                <ScalarProperty Name="Nu_Placa" ColumnName="Nu_Placa" />
-                <ScalarProperty Name="No_Asegurado" ColumnName="No_Asegurado" />
                 <ScalarProperty Name="Co_Siniestro" ColumnName="Co_Siniestro" />
               </MappingFragment>
             </EntityTypeMapping>

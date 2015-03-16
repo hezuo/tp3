@@ -17,6 +17,7 @@ namespace Pacifico.DataAccess
         public SINIESTRO()
         {
             this.INFORME_ACCIDENTE_VEHICULAR = new HashSet<INFORME_ACCIDENTE_VEHICULAR>();
+            this.LIQUIDACION_VEHICULAR = new HashSet<LIQUIDACION_VEHICULAR>();
             this.PRESUPUESTO = new HashSet<PRESUPUESTO>();
         }
     
@@ -33,6 +34,7 @@ namespace Pacifico.DataAccess
     
         public virtual ESTADO_SINIESTRO ESTADO_SINIESTRO { get; set; }
         public virtual ICollection<INFORME_ACCIDENTE_VEHICULAR> INFORME_ACCIDENTE_VEHICULAR { get; set; }
+        public virtual ICollection<LIQUIDACION_VEHICULAR> LIQUIDACION_VEHICULAR { get; set; }
         public virtual POLIZA_VEHICULAR POLIZA_VEHICULAR { get; set; }
         public virtual ICollection<PRESUPUESTO> PRESUPUESTO { get; set; }
         public virtual PROCURADOR PROCURADOR { get; set; }

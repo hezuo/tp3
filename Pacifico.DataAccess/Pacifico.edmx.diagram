@@ -4,59 +4,63 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0b377bb656964ef08c5b444a95cf2bc3" Name="Diagram1" ZoomLevel="22">
-        <EntityTypeShape EntityType="PACIFICOModel.ARTICULO" Width="1.5" PointX="8.1598571111261187" PointY="10.988846024027488" />
-        <EntityTypeShape EntityType="PACIFICOModel.ASEGURADO" Width="1.5" PointX="7.8069138377005762" PointY="30.012398405937663" />
-        <EntityTypeShape EntityType="PACIFICOModel.BENEFICIARIO" Width="1.5" PointX="8.0836950317414917" PointY="3.7052580731479723" />
-        <EntityTypeShape EntityType="PACIFICOModel.CARGO" Width="1.5" PointX="1.6821738098199357" PointY="15.046529538485467" />
-        <EntityTypeShape EntityType="PACIFICOModel.CARTA_NOTARIAL" Width="1.5" PointX="11.797439005131572" PointY="11.74290425132164" />
-        <EntityTypeShape EntityType="PACIFICOModel.CERT_MEDICO_DEFUNCION" Width="1.5" PointX="10.677699710558029" PointY="1.0476055895200025" />
-        <EntityTypeShape EntityType="PACIFICOModel.DEPARTAMENTO" Width="1.5" PointX="2.6898026180871777" PointY="20.862823615252424" />
-        <EntityTypeShape EntityType="PACIFICOModel.DISTRITO" Width="1.5" PointX="2.5054008543982174" PointY="13.297941333287369" />
-        <EntityTypeShape EntityType="PACIFICOModel.DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR" Width="1.5" PointX="4.8908204142427163" PointY="24.889334317710873" />
-        <EntityTypeShape EntityType="PACIFICOModel.EMPLEADO" Width="1.5" PointX="6.0152714224603363" PointY="7.5127694492753454" />
-        <EntityTypeShape EntityType="PACIFICOModel.ESPECIALIDAD" Width="1.5" PointX="4.0496820807688323" PointY="26.061493453598345" />
-        <EntityTypeShape EntityType="PACIFICOModel.ESTADO_SINIESTRO" Width="1.5" PointX="5.6553973041732784" PointY="11.766277497525456" />
-        <EntityTypeShape EntityType="PACIFICOModel.ESTADO_SOLICITUD" Width="1.5" PointX="3.9826880153187965" PointY="17.010924779349438" />
-        <EntityTypeShape EntityType="PACIFICOModel.EXPEDIENTE" Width="1.5" PointX="6.0764932344092486" PointY="15.719379655886153" />
-        <EntityTypeShape EntityType="PACIFICOModel.FORMA_PAGO" Width="1.5" PointX="10.582404087568822" PointY="22.086546774062583" />
-        <EntityTypeShape EntityType="PACIFICOModel.HISTORIAL_CLINICO" Width="1.5" PointX="8.1456627269022448" PointY="4.3438212891779004" />
-        <EntityTypeShape EntityType="PACIFICOModel.INFORME_ACCIDENTE_VEHICULAR" Width="1.5" PointX="10.931219849237809" PointY="13.392341396488408" />
-        <EntityTypeShape EntityType="PACIFICOModel.INFORME_PROCURADORIA" Width="1.5" PointX="0.84352266082704186" PointY="2.36452296486335" />
-        <EntityTypeShape EntityType="PACIFICOModel.INVITACION" Width="1.5" PointX="5.8580827926556038" PointY="19.018852525865125" />
-        <EntityTypeShape EntityType="PACIFICOModel.MARCA_VEHICULO" Width="1.5" PointX="2.865237483226339" PointY="4.2101026047999515" />
-        <EntityTypeShape EntityType="PACIFICOModel.MODELO_VEHICULO" Width="1.5" PointX="11.133454799248582" PointY="20.301775599039054" />
-        <EntityTypeShape EntityType="PACIFICOModel.MOTOR_VEHICULO" Width="1.5" PointX="10.539491285821185" PointY="26.610313353412931" />
-        <EntityTypeShape EntityType="PACIFICOModel.ORDEN_REPARACION" Width="1.5" PointX="6.4778423786525812" PointY="4.4759119024853744" />
-        <EntityTypeShape EntityType="PACIFICOModel.POLIZA_VEHICULAR" Width="1.5" PointX="8.3266620190472622" PointY="24.942055654219377" />
-        <EntityTypeShape EntityType="PACIFICOModel.POLIZA_VIDA" Width="1.5" PointX="9.7069915317497166" PointY="1.8612608620250881" />
-        <EntityTypeShape EntityType="PACIFICOModel.PRESTADORA" Width="1.5" PointX="2.7794969001689447" PointY="20.893039519383123" />
-        <EntityTypeShape EntityType="PACIFICOModel.PRESUPUESTO" Width="1.5" PointX="10.882533508763897" PointY="14.864823512204374" />
-        <EntityTypeShape EntityType="PACIFICOModel.PRESUPUESTO_DETALLE" Width="1.5" PointX="3.7822168300776822" PointY="27.698125509404637" />
-        <EntityTypeShape EntityType="PACIFICOModel.PROCURADOR" Width="1.5" PointX="10.46541995483703" PointY="9.0521594030094139" />
-        <EntityTypeShape EntityType="PACIFICOModel.PROT_JURADA_DOMICILIO" Width="1.5" PointX="7.2719613869078277" PointY="4.5455953052945413" />
-        <EntityTypeShape EntityType="PACIFICOModel.PROVINCIA" Width="1.5" PointX="7.31297854302124" PointY="20.766417170300343" />
-        <EntityTypeShape EntityType="PACIFICOModel.RED" Width="1.5" PointX="7.0600444893632286" PointY="9.3732905729549429" />
-        <EntityTypeShape EntityType="PACIFICOModel.REGISTRO_DOCUMENTO" Width="1.5" PointX="8.25792636734337" PointY="24.130044605643509" />
-        <EntityTypeShape EntityType="PACIFICOModel.SEDE" Width="1.5" PointX="1.4616322468321921" PointY="25.780465585077398" />
-        <EntityTypeShape EntityType="PACIFICOModel.SERVICIO" Width="1.5" PointX="6.980036194892616" PointY="4.3165459801985628" />
-        <EntityTypeShape EntityType="PACIFICOModel.SERVICIO_SEDE" Width="1.5" PointX="11.128645207327159" PointY="26.023335245448788" />
-        <EntityTypeShape EntityType="PACIFICOModel.SINIESTRO" Width="1.5" PointX="6.4682628859152382" PointY="11.83062118842761" />
-        <EntityTypeShape EntityType="PACIFICOModel.SINIESTRO_VEHICULAR" Width="1.5" PointX="3.6838337442296711" PointY="22.497376616344496" />
-        <EntityTypeShape EntityType="PACIFICOModel.SOLICITUD_AFILIACION" Width="1.5" PointX="11.233568759278194" PointY="20.47074612438248" />
-        <EntityTypeShape EntityType="PACIFICOModel.TIPO_POLIZA_VEHICULAR" Width="1.5" PointX="9.9345116829194655" PointY="6.1445894716980822" />
-        <EntityTypeShape EntityType="PACIFICOModel.TIPO_SINIESTRO" Width="1.5" PointX="10.052434773208777" PointY="23.261926304205286" />
-        <EntityTypeShape EntityType="PACIFICOModel.USUARIO" Width="1.5" PointX="8.187775839207589" PointY="26.358483371491769" />
-        <EntityTypeShape EntityType="PACIFICOModel.VEHICULO" Width="1.5" PointX="5.502958140104524" PointY="0.82872775235619756" />
+      <Diagram DiagramId="0b377bb656964ef08c5b444a95cf2bc3" Name="Diagram1" ZoomLevel="19">
+        <EntityTypeShape EntityType="PACIFICOModel.ARTICULO" Width="1.5" PointX="1.1336109643492898" PointY="23.196932892872454" />
+        <EntityTypeShape EntityType="PACIFICOModel.ASEGURADO" Width="1.5" PointX="7.6486207412782221" PointY="13.997725418767764" />
+        <EntityTypeShape EntityType="PACIFICOModel.BENEFICIARIO" Width="1.5" PointX="4.8467876002410364" PointY="13.154334327743545" />
+        <EntityTypeShape EntityType="PACIFICOModel.CARGO" Width="1.5" PointX="1.3925399004446994" PointY="0.1782284379835373" />
+        <EntityTypeShape EntityType="PACIFICOModel.CARTA_NOTARIAL" Width="1.5" PointX="3.4922784843911785" PointY="22.49405574355929" />
+        <EntityTypeShape EntityType="PACIFICOModel.CERT_MEDICO_DEFUNCION" Width="1.5" PointX="11.557633414658547" PointY="14.578984624975819" />
+        <EntityTypeShape EntityType="PACIFICOModel.CRITERIO_EVALUACION" Width="1.5" PointX="5.2902197881090549" PointY="14.212335891189211" />
+        <EntityTypeShape EntityType="PACIFICOModel.DEPARTAMENTO" Width="1.5" PointX="4.0277594085912032" PointY="29.504743351370443" />
+        <EntityTypeShape EntityType="PACIFICOModel.DISTRITO" Width="1.5" PointX="3.8857173639748792" PointY="24.985522877883874" />
+        <EntityTypeShape EntityType="PACIFICOModel.DOCUMENTO_INFORME_ACCIDENTE_VEHICULAR" Width="1.5" PointX="5.4108757420493641" PointY="22.544152061708342" />
+        <EntityTypeShape EntityType="PACIFICOModel.EMPLEADO" Width="1.5" PointX="2.8121408479344758" PointY="19.103729867890351" />
+        <EntityTypeShape EntityType="PACIFICOModel.ESPECIALIDAD" Width="1.5" PointX="5.8472323407638971" PointY="24.347136136306048" />
+        <EntityTypeShape EntityType="PACIFICOModel.ESTADO_SINIESTRO" Width="1.5" PointX="11.936404578358124" PointY="24.780135970925976" />
+        <EntityTypeShape EntityType="PACIFICOModel.ESTADO_SOLICITUD" Width="1.5" PointX="11.145430191953402" PointY="4.6213006994786205" />
+        <EntityTypeShape EntityType="PACIFICOModel.EVALUACION_PRESTADORA" Width="1.5" PointX="4.2759932765159725" PointY="26.291621160829262" />
+        <EntityTypeShape EntityType="PACIFICOModel.EXPEDIENTE" Width="1.5" PointX="9.76572113566367" PointY="8.4886882642697028" />
+        <EntityTypeShape EntityType="PACIFICOModel.FORMA_PAGO" Width="1.5" PointX="3.9655963033277528" PointY="7.9836385585291492" />
+        <EntityTypeShape EntityType="PACIFICOModel.HISTORIAL_CLINICO" Width="1.5" PointX="0.49490016908147377" PointY="1.9578356900987382" />
+        <EntityTypeShape EntityType="PACIFICOModel.INFORME_ACCIDENTE_VEHICULAR" Width="1.5" PointX="10.250513746519811" PointY="7.4496728216529231" />
+        <EntityTypeShape EntityType="PACIFICOModel.INFORME_INSPECTORIA" Width="1.5" PointX="11.015914186377039" PointY="2.8812869800633223" />
+        <EntityTypeShape EntityType="PACIFICOModel.INFORME_PROCURADORIA" Width="1.5" PointX="3.85255943790663" PointY="29.990758924740721" />
+        <EntityTypeShape EntityType="PACIFICOModel.INVITACION" Width="1.5" PointX="4.1323368326445751" PointY="21.371596316514349" />
+        <EntityTypeShape EntityType="PACIFICOModel.LIQUIDACION_VEHICULAR" Width="1.5" PointX="7.2864023052558311" PointY="18.21924198522197" />
+        <EntityTypeShape EntityType="PACIFICOModel.MARCA_VEHICULO" Width="1.5" PointX="2.8977896994435182" PointY="2.1084170947356231" />
+        <EntityTypeShape EntityType="PACIFICOModel.MODELO_VEHICULO" Width="1.5" PointX="5.979834836898295" PointY="25.392965060376081" />
+        <EntityTypeShape EntityType="PACIFICOModel.MOTOR_VEHICULO" Width="1.5" PointX="2.709337844843668" PointY="8.0303846933089122" />
+        <EntityTypeShape EntityType="PACIFICOModel.ORDEN_REPARACION" Width="1.5" PointX="1.0828565401410946" PointY="3.0270277424841319" />
+        <EntityTypeShape EntityType="PACIFICOModel.POLIZA_VEHICULAR" Width="1.5" PointX="6.7335598108980621" PointY="15.919232703707754" />
+        <EntityTypeShape EntityType="PACIFICOModel.POLIZA_VIDA" Width="1.5" PointX="2.8516174940632739" PointY="28.049185840435879" />
+        <EntityTypeShape EntityType="PACIFICOModel.PRESTADORA" Width="1.5" PointX="5.312742453679788" PointY="20.144630963050123" />
+        <EntityTypeShape EntityType="PACIFICOModel.PRESUPUESTO" Width="1.5" PointX="5.7874451809504279" PointY="31.092139035040578" />
+        <EntityTypeShape EntityType="PACIFICOModel.PRESUPUESTO_DETALLE" Width="1.5" PointX="7.7908423877278548" PointY="15.021121464213879" />
+        <EntityTypeShape EntityType="PACIFICOModel.PROCURADOR" Width="1.5" PointX="10.669549768171063" PointY="22.331667508153089" />
+        <EntityTypeShape EntityType="PACIFICOModel.PROT_JURADA_DOMICILIO" Width="1.5" PointX="1.50152293103818" PointY="6.123614209761663" />
+        <EntityTypeShape EntityType="PACIFICOModel.PROVINCIA" Width="1.5" PointX="4.8347257901144793" PointY="8.78285606614447" />
+        <EntityTypeShape EntityType="PACIFICOModel.RED" Width="1.5" PointX="0.81376501024410364" PointY="2.9122401489467546" />
+        <EntityTypeShape EntityType="PACIFICOModel.REGISTRO_DOCUMENTO" Width="1.5" PointX="10.353656892829415" PointY="11.547714998734982" />
+        <EntityTypeShape EntityType="PACIFICOModel.SEDE" Width="1.5" PointX="4.6014975852339983" PointY="9.50828333641788" />
+        <EntityTypeShape EntityType="PACIFICOModel.SERVICIO" Width="1.5" PointX="3.0315618678143066" PointY="26.221023258856043" />
+        <EntityTypeShape EntityType="PACIFICOModel.SERVICIO_SEDE" Width="1.5" PointX="1.8437737458589365" PointY="13.611170223733025" />
+        <EntityTypeShape EntityType="PACIFICOModel.SINIESTRO" Width="1.5" PointX="6.3947612896537223" PointY="27.612730083806781" />
+        <EntityTypeShape EntityType="PACIFICOModel.SOLICITUD_AFILIACION" Width="1.5" PointX="7.7531529254061873" PointY="18.009683676999845" />
+        <EntityTypeShape EntityType="PACIFICOModel.TIPO_POLIZA_VEHICULAR" Width="1.5" PointX="7.1500200904673061" PointY="18.01153833512754" />
+        <EntityTypeShape EntityType="PACIFICOModel.TIPO_SINIESTRO" Width="1.5" PointX="2.1004015589600433" PointY="7.5478957330565413" />
+        <EntityTypeShape EntityType="PACIFICOModel.USUARIO" Width="1.5" PointX="8.26030464855037" PointY="17.400501080509507" />
+        <EntityTypeShape EntityType="PACIFICOModel.VEHICULO" Width="1.5" PointX="9.8825708897237536" PointY="31.285517483616953" />
         <AssociationConnector Association="PACIFICOModel.FK_PRESUPUESTO_DETALLE_CoArticulo" />
         <AssociationConnector Association="PACIFICOModel.FK_ASEGURADO_CoDistrito" />
         <AssociationConnector Association="PACIFICOModel.FK_EXPEDIENTE_CoAsegurado" />
         <AssociationConnector Association="PACIFICOModel.FK_POLIZA_VEHICULAR_CoAsegurado" />
         <AssociationConnector Association="PACIFICOModel.FK_EXPEDIENTE_CoBeneficiario" />
         <AssociationConnector Association="PACIFICOModel.FK_EMPLEADO_CoCargo" />
-        <AssociationConnector Association="PACIFICOModel.FK_CARTA_NOTARIAL_Co_NumInfProc" />
+        <AssociationConnector Association="PACIFICOModel.FK_CARTA_NOTARIAL_CoNumInfProc" />
         <AssociationConnector Association="PACIFICOModel.FK_CERT_MEDICO_DEFUNCION_CoDistrito" />
         <AssociationConnector Association="PACIFICOModel.FK_CERT_MEDICO_DEFUNCION_CoExpediente" />
+        <AssociationConnector Association="PACIFICOModel.FK_EVALUACION_PRESTADORA_CoCriterio" />
         <AssociationConnector Association="PACIFICOModel.FK_PROVINCIA_CoDepartamento" />
         <AssociationConnector Association="PACIFICOModel.FK_DISTRITO_CoProvincia" />
         <AssociationConnector Association="PACIFICOModel.FK_EMPLEADO_CoDistrito" />
@@ -69,7 +73,9 @@
         <AssociationConnector Association="PACIFICOModel.FK_SERVICIO_CoEspecialidad" />
         <AssociationConnector Association="PACIFICOModel.FK_SINIESTRO_CoEstadoSiniestro" />
         <AssociationConnector Association="PACIFICOModel.FK_SOLICITUD_AFILIACION_CoEstado" />
+        <AssociationConnector Association="PACIFICOModel.FK_EVALUACION_PRESTADORA_CoPrestadora" />
         <AssociationConnector Association="PACIFICOModel.FK_HISTORIAL_CLINICO_CoExpediente" />
+        <AssociationConnector Association="PACIFICOModel.FK_INFORME_INSPECTORIA_CoExpediente" />
         <AssociationConnector Association="PACIFICOModel.FK_INFORME_PROCURADORIA_CoExpediente" />
         <AssociationConnector Association="PACIFICOModel.FK_POLIZA_VIDA_CoExpediente" />
         <AssociationConnector Association="PACIFICOModel.FK_PROT_JURADA_DOMICILIO_CoExpediente" />
@@ -77,6 +83,8 @@
         <AssociationConnector Association="PACIFICOModel.FK_PRESUPUESTO_CoFormaPago" />
         <AssociationConnector Association="PACIFICOModel.FK_INFORME_ACCIDENTE_VEHICULAR_CoSiniestro" />
         <AssociationConnector Association="PACIFICOModel.FK_SOLICITUD_AFILIACION_CoInvitacion" />
+        <AssociationConnector Association="PACIFICOModel.FK_LIQUIDACION_VEHICULAR_Co_Usuario" />
+        <AssociationConnector Association="PACIFICOModel.FK_LIQUIDACION_VEHICULAR_CoSiniestro" />
         <AssociationConnector Association="PACIFICOModel.FK_MODELO_VEHICULO_CoMarcaVehiculo" />
         <AssociationConnector Association="PACIFICOModel.FK_VEHICULO_CoModeloVehiculo" />
         <AssociationConnector Association="PACIFICOModel.FK_VEHICULO_CoMotorVehiculo" />

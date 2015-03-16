@@ -12,18 +12,14 @@ namespace Pacifico.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class SERVICIO_SEDE
+    public partial class EVALUACION_PRESTADORA
     {
-        public int Co_Sede { get; set; }
-        public int Co_Servicio { get; set; }
-        public Nullable<int> Co_Red { get; set; }
-        public decimal Po_Copago { get; set; }
-        public decimal Po_Cobertura { get; set; }
-        public string Tx_Estado { get; set; }
+        public int Co_Prestadora { get; set; }
+        public int Co_Criterio { get; set; }
+        public decimal Nu_Puntaje { get; set; }
         public string Tx_Observacion { get; set; }
     
-        public virtual RED RED { get; set; }
-        public virtual SEDE SEDE { get; set; }
-        public virtual SERVICIO SERVICIO { get; set; }
+        public virtual CRITERIO_EVALUACION CRITERIO_EVALUACION { get; set; }
+        public virtual PRESTADORA PRESTADORA { get; set; }
     }
 }

@@ -12,11 +12,18 @@ namespace Pacifico.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class SINIESTRO_VEHICULAR
+    public partial class CRITERIO_EVALUACION
     {
-        public int Co_Siniestro { get; set; }
-        public string No_Asegurado { get; set; }
-        public string Nu_Placa { get; set; }
-        public string Nu_PolizaVehicular { get; set; }
+        public CRITERIO_EVALUACION()
+        {
+            this.EVALUACION_PRESTADORA = new HashSet<EVALUACION_PRESTADORA>();
+        }
+    
+        public int Co_Criterio { get; set; }
+        public string No_Criterio { get; set; }
+        public string Tx_Descripcion { get; set; }
+        public decimal Po_Peso { get; set; }
+    
+        public virtual ICollection<EVALUACION_PRESTADORA> EVALUACION_PRESTADORA { get; set; }
     }
 }

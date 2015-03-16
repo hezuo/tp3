@@ -50,6 +50,7 @@
     <Compile Include="FormaPagoLogica.cs" />
     <Compile Include="InformeAccidenteVehicularLogica.cs" />
     <Compile Include="InvitacionLogica.cs" />
+    <Compile Include="LiquidacionVehicularLogica.cs" />
     <Compile Include="LNExpediente.cs" />
     <Compile Include="LNINFORME_PROCURADORIA.cs" />
     <Compile Include="PrestadoraLogica.cs" />

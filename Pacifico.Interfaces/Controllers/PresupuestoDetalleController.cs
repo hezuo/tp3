@@ -74,7 +74,7 @@ namespace Pacifico.Interfaces.Controllers
 
         public ActionResult Create()
         {
-            List<SINIESTRO> siniestroList = siniestroBL.listarSiniestrosPresupuestos();
+            List<SINIESTRO> siniestroList = siniestroBL.listarSiniestros();
             ViewData["coSiniestroList"] = new SelectList(siniestroList, "Co_Siniestro", "Nu_Siniestro");
 
             List<FORMA_PAGO> formaPagoList = formaPagoBL.listarFormaPago();
