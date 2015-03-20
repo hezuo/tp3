@@ -129,22 +129,4 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptsSection" runat="server">
-    <%: Scripts.Render("~/bundles/jqueryval") %>
-    <script type="text/javascript">
-            $(document).ready(function () {
-                $("#dsSedeList").change(function () {
-                    estadoBoton($("#dsSedeList").val());
-                });
-            });
-    </script>
-    <script type="text/javascript">
-        function estadoBoton(value) {
-            if (value=="") {
-                $("#continueBtn").attr("disabled", "disabled");
-            }
-            else {
-                $("#continueBtn").removeAttr("disabled");
-            }
-        }
-    </script>
 </asp:Content>

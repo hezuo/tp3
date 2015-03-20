@@ -11,21 +11,8 @@
         @Response.Redirect("/Home/Index");   
     }%>
 
-    <%: Styles.Render("~/Content/normalize.css") %>
-    <%: Styles.Render("~/Content/tabs.css") %>
-    <%: Styles.Render("~/Content/jsDatePick_ltr.min.css") %>
-    <%: Styles.Render("~/Content/tabstyles.css") %>
-    <%: Styles.Render("~/Content/jquery.lightbox.css") %>
-    <script src="<%: Url.Content("~/Scripts/cbpFWTabs.js") %>" type="text/javascript"></script>
-    <script src="<%: Url.Content("~/Scripts/modernizr.custom.js") %>" type="text/javascript"></script>
-    <script src="<%: Url.Content("~/Scripts/jsDatePick.min.1.3.js") %>" type="text/javascript"></script>
-	<script type="text/javascript">
-	     $(document).ready(function () {
-	         $('.lightbox').lightbox();
-	     });
-    </script>
 
-<h2>Informe Procuradoria</h2>
+<h2><%: ViewBag.titulo %></h2>
     <h4>
         <b>
             <font color="red">
@@ -33,7 +20,7 @@
                 <p><%: Html.ValidationMessageFor(model => model.Co_Expediente) %></p>
                 <p><%: Html.ValidationMessageFor(model => model.Co_NumInfProc) %></p>
                 <p><%: Html.ValidationMessageFor(model => model.Fe_Emision) %></p>
-                <p><%: Html.ValidationMessageFor(model => model.Tx_TipoResultado) %></p>
+                <p><%: Html.ValidationMessageFor(model => model.Fl_TipoResultado) %></p>
                 <p><%: Html.ValidationMessageFor(model => model.Tx_Conclusiones) %></p>
                 <p><%: Html.ValidationMessageFor(model => model.Fl_Aprobacion) %></p>
             </font>
@@ -42,220 +29,236 @@
 <% using (Html.BeginForm()) { %>
     <%: Html.AntiForgeryToken() %>
 
-    <div class="form-actions">
-    <table width="100%">
-        <tr>
-            <td>&nbsp;</td>
-            <td><label><strong>EXPEDIENTE</strong></label></td>
-            <td>&nbsp;</td>
-            <td style="display:none"><%: Html.DropDownList("Co_Expediente", String.Empty)%></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>
+    <fieldset>
+        
+        <div class="editor-label" style=" border: 1px solid; padding: 11px 13px 13px 12px; ">
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                <div class="editor-label">
+                    Nro Informe
+                </div>
+                <div class="editor-field">
+                    <label id="nroinforme">
+                        <%: Html.DisplayFor(model => model.Co_NumInfProc) %>
+                    </label>
+
+
+                </div>
+            </div>
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                <div class="editor-label">
+                    Fecha Emision
+                </div>
+                <div class="editor-field">
+                    <label id="nroinformefecha">
+                        <%: Html.DisplayFor(model => model.Fe_Emision) %>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.Co_Expediente, "EXPEDIENTE")%>
+        </div>
+
+
+        <div class="editor-field" style="display:none">
+            <%: Html.DropDownList("Co_Expediente", String.Empty)%>
+            <%: Html.ValidationMessageFor(model => model.Co_Expediente)%>
+        </div>
+
+        <div class="editor-label" style=" border: 1px solid; padding: 11px 13px 13px 12px; ">
+            <div style="display:inline-block;width:49%;vertical-align:top">
                 Nro. Expediente:
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.Co_Expediente) %>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>
-               <%--<a href="../../Expediente/Details/1?lightbox[iframe]=true&lightbox[width]=800&lightbox[height]=600" class="lightbox" id="btnexaminarex">Open Google</a>--%>
-                <a href="#" id="btnexaminarex">Examinar Expediente</a>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>Asegurado:
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.ASEGURADO.No_Asegurado) %>
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.ASEGURADO.No_ApePaterno) %>
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.ASEGURADO.No_ApeMaterno) %>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>Beneficiario:
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.BENEFICIARIO.No_Beneficiario) %>
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.BENEFICIARIO.No_ApePaterno) %>
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.BENEFICIARIO.No_ApeMaterno) %>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><label><strong>POLIZA DE VIDA</strong></label></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>
-                Nro Poliza:
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Co_PolizaVida) %>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>Prima:
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Ss_Prima) %>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>Fecha de Renovacion:
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Fe_Renovacion) %>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>Fecha Vencimiento:
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Fe_Vencimiento) %>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>Inicio Vigencia:
-                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Fe_InicioVigencia) %>
-            </td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
-    <table width="100%">
-        <tr>
-            <td>&nbsp;</td>
-            <td style="display:none"><%: Html.LabelFor(model => model.Co_NumInfProc) %></td>
-            <td>&nbsp;</td>
-            <td style="display:none"><%: Html.EditorFor(model => model.Co_NumInfProc)%></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><label>Fecha Emision</label></td>
-            <td><label>:</label></td>
-            <td><%: Html.EditorFor(model => model.Fe_Emision) %></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><label>Resultado Informe</label></td>
-            <td><label>:</label></td>
-            <td><%: Html.TextAreaFor(model => model.Tx_TipoResultado) %></td>
-            <td>&nbsp;</td>
-            <td><label>Conclusion Informe</label></td>
-            <td><label>:</label></td>
-            <td><%: Html.TextAreaFor(model => model.Tx_Conclusiones) %></td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td style="display:none"><%: Html.LabelFor(model => model.Fl_Aprobacion) %></td>
-            <td>&nbsp;</td>
-            <td style="display:none"><%: Html.EditorFor(model => model.Fl_Aprobacion) %></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td colspan="7" align="center">
-		        <input type="submit" value="Crear Informe" class = "btn"/>
-                &nbsp;
-                <%: Html.ActionLink("Cancelar", "Index", "Expediente", routeValues: null, htmlAttributes: new {@class="btn", onclick = "return confirm('¿Desea salir de Registrar Informe Procuradoria?')" })%>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
-    </div>
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.Co_Expediente)%>
+            </div>
+            <div style="display:inline-block;width:49%;vertical-align:top">
+
+            </div>
+
+
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                Asegurado:
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.ASEGURADO.No_Asegurado)%>
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.ASEGURADO.No_ApePaterno)%>
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.ASEGURADO.No_ApeMaterno)%>
+            </div>
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                Beneficiario:
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.BENEFICIARIO.No_Beneficiario)%>
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.BENEFICIARIO.No_ApellidoPaterno)%>
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.BENEFICIARIO.No_ApellidoMaterno)%>
+            </div>
+
+
+        </div>
+        <a href="#" id="btnexaminarex">Examinar Expediente</a>
+        <a href="#" id="btnActualizar">Actualizar Expediente</a>
+        
+        <hr />
+        <div class="editor-label">
+            <%: Html.LabelFor(model => model.EXPEDIENTE.POLIZA_VIDA, "POLIZA DE VIDA")%>
+        </div>
+        <div class="editor-label" style=" border: 1px solid; padding: 11px 13px 13px 12px; ">
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                Nro poliza:
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Co_PolizaVida)%>
+
+            </div>
+            <div style="display:inline-block;width:49%;vertical-align:top">
+
+            </div>
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                Prima:
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Ss_Prima)%>
+            </div>
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                Fecha Renovacion:
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Fe_Renovacion)%>
+            </div>
+
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                Fecha Vencimiento:
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Fe_Vencimiento)%>
+            </div>
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                Inicio Vigencia:
+                <%: Html.DisplayFor(model => model.EXPEDIENTE.POLIZA_VIDA.First().Fe_InicioVigencia)%>
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="editor-field">
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                <div style="display:inline-block;width:13%;vertical-align:top">
+                    Resultado <br />
+                    Informe
+
+                </div>
+                <div style="display:inline-block;width:85%;vertical-align:top">
+                    <label style="color:red;width:2px;display:inline">
+                    (*)
+                        </label>
+                    <%: Html.TextAreaFor(model => model.Fl_TipoResultado)%>
+                    <%: Html.ValidationMessageFor(model => model.Fl_TipoResultado)%>
+                </div>
+            </div>
+            <div style="display:inline-block;width:49%;vertical-align:top">
+                <div style="display:inline-block;width:15%;vertical-align:top">
+                    Conclusion  <br />
+                    Informe
+                </div>
+                <div style="display:inline-block;width:84%;vertical-align:top">
+                             <label style="color:red;width:2px;display:inline">
+                    (*)
+                        </label>
+                    <%: Html.TextAreaFor(model => model.Tx_Conclusiones)%>
+                    <%: Html.ValidationMessageFor(model => model.Tx_Conclusiones)%>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="editor-label" style="display:none">
+            <%: Html.EditorFor(model => model.Co_NumInfProc)%>
+            <%: Html.LabelFor(model => model.Fl_Aprobacion)%>
+        </div>
+        <div class="editor-field" style="display:none">
+            <%: Html.EditorFor(model => model.Fl_Aprobacion)%>
+            <%: Html.ValidationMessageFor(model => model.Fl_Aprobacion)%>
+        </div>
+
+        <label style="color: red; width: 2px; display: inline">
+                    (*) Campos Obligatorios
+                </label>
+
+        <p>
+            <input type="submit" value='<%: ViewBag.valueboton %>' style='<%: ViewBag.csshide %>' id="btnEnviar"  />
+            
+        </p>
+    </fieldset>
 <% } %>
 
     </form>
+    <div>
 
+    <%: Html.ActionLink("Regresar a la Lista", "Index") %>
+</div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptsSection" runat="server">
-    <script src="<%: Url.Content("~/Scripts/jquery-1.8.1.js") %>" type="text/javascript"></script>
-    <script src="<%: Url.Content("~/Scripts/jquery.lightbox.js") %>" type="text/javascript"></script>
+
+    <%:  Styles.Render("~/Content/normalize.css")%>
+<%:Styles.Render("~/Content/tabs.css")%>
+<%:Styles.Render("~/Content/jsDatePick_ltr.min.css")%>
+<%:Styles.Render("~/Content/tabstyles.css")%>
+
+<%:Styles.Render("~/Content/jquery.lightbox.css")%>
+
+
+
+<script src="<%: Url.Content("~/Scripts/cbpFWTabs.js")%>" type="text/javascript"></script>
+<script src="<%:Url.Content("~/Scripts/modernizr.custom.js")%>" type="text/javascript"></script>
+<script src="<%:Url.Content("~/Scripts/jsDatePick.min.1.3.js")%>" type="text/javascript"></script>
+
+       <%: Scripts.Render("~/Scripts/jquery-1.8.1.js")%>
+        <%:Scripts.Render("~/Scripts/jquery.lightbox.js") %>
 
     <script type="text/javascript">
-        $("#btnexaminarex").click(function () {
-            $.lightbox("../../Expediente/Details/" + $("#Co_Expediente").val(), {
-                'width': 800,
-                'height': 600,
-                'iframe': true
+
+        $(document).ready(function () {
+            if ('@ViewBag.csshide' == 'display:none;') {
+                $("#Fl_TipoResultado").prop("disabled", true);
+                $("#Tx_Conclusiones").prop("disabled", true);
+            }
+            if ($("#nroinforme").html().trim() == '0') {
+                $("#nroinforme").html('Por generar');
+            }
+            if ($("#nroinforme").html().trim() == 'Por generar') {
+                $("#nroinformefecha").html('Por generar');
+            }
+
+
+            $("#btnEnviar").click(function () {
+
+                if ($('#Fl_TipoResultado').val() == '' && $('#Tx_Conclusiones').val() == '') {
+                    alert('Falta ingresar resultado y conclusiones');
+                    return false;
+                }
+                if ($('#Fl_TipoResultado').val() == '') {
+                    alert('Falta ingresar resultado');
+                    return false;
+                }
+                if ($('#Tx_Conclusiones').val() == '') {
+                    alert('Falta ingresar conclusiones');
+                    return false;
+                }
             });
-            return false;
+
+            $("#btnexaminarex").click(function () {
+
+                $.lightbox("../../Expediente/Details/" + $("#Co_Expediente").val(), {
+                    'width': 800,
+                    'height': 600,
+                    'iframe': true
+                });
+                return false;
+            });
+            $("#btnActualizar").click(function () {
+                window.location.assign("../../Expediente/Create/" + +$("#Co_Expediente").val());
+                return false;
+            });
+
         });
 
-        window.onload = function () {
-            new JsDatePick({
-                useMode: 2,
-                target: "Fe_Emision",
-                dateFormat: "%d/%m/%Y"
-                /*selectedDate:{				This is an example of what the full configuration offers.
-                    day:5,						For full documentation about these settings please see the full version of the code.
-                    month:9,
-                    year:2006
-                },
-                yearsRange:[1978,2020],
-                limitToToday:false,
-                cellColorScheme:"beige",
-                dateFormat:"%m-%d-%Y",
-                imgPath:"img/",
-                weekStartDay:1*/
-            });
-
-
-        };
 </script>
 </asp:Content>

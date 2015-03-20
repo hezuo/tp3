@@ -116,8 +116,8 @@
                 $("span#asegurado").text("");
                 llenarSiniestro($(this).val());
             });
-            
-            $("#ds_articulo").change(function () {                
+
+            $("#ds_articulo").change(function () {
                 llenarDatosArticulo($(this).val());
             });
 
@@ -131,8 +131,8 @@
 
                 var artDesc = $("#ds_articulo option[value='" + articulo + "']").text();
                 var precio = $("span#precio").text();
-           
-                
+
+
                 var total = precio * cantidad;
                 var newtr = '<tr id="trArt' + articulo + '"><td><a href="#" class="editar_articulo" data-artparent="trArt' + articulo + '" data-artid="' + articulo + '"  data-precio="' + precio + '"><span class="icon-pencil">e</span></a></td><td><input type="hidden" name="articulos[]" value="' + articulo + '" /> <input type="hidden" class="cantidad" name="cant_articulos[]" value="' + cantidad + '" /><input type="hidden" class="cantidad" name="precios_articulos[]" value="' + precio + '" />' + artDesc + '</td><td class="precio">' + precio + '</td><td>' + cantidad + '</td><td class="sub_total">' + total + '</td></tr>';
                 if ($("#tblArticulo tr#trArt" + articulo).length == 1) {
@@ -140,7 +140,7 @@
                 } else {
                     $('#tblArticulo').append(newtr);
                 }
-                
+
                 $("input#cantidad").val("");
                 $("span#precio").text("");
                 $("#ds_articulo").val($("#ds_articulo option:first").val());
@@ -164,30 +164,30 @@
                     if (r) {
                         $("form").submit();
                     }
-                    
+
                 } else {
                     $("#errorMessage").text("Ingrese todos los datos");
                 }
-                
+
             });
 
-           
+
         });
 
         function setupArtEdit() {
-            
+
             $(" #tblArticulo tr a.editar_articulo").off().click(function (e) {
                 e.preventDefault();
                 console.log($(this));
                 var tr = $("tr#" + trId);
                 var trId = $(this).data('artparent');
                 var artid = $(this).data('artid');
-                var precio = $(this).data('precio');                
+                var precio = $(this).data('precio');
                 var cantidad = $("tr#" + trId + " input.cantidad").attr("value");
                 $("#ds_articulo").val(artid);
                 $("span#precio").text(precio);
                 $("input#cantidad").val(cantidad);
-                
+
             });
         }
 
@@ -210,7 +210,7 @@
             });
 
         }
-    
+
         function llenarDatosArticulo(value) {
             $("input#cantidad").val("");
             $("span#precio").val("");
@@ -219,19 +219,19 @@
                 var selectedValue = value;
                 $.ajax({
                     url: '<%:Url.Action("getDatosArticulo", "PresupuestoDetalle")%>',
-                type: 'POST',
-                data: { "codArticulo": selectedValue },
-                dataType: 'json',
-                success: function (response) {
-                    $("span#precio").text(response.precio);                    
-                },
-                error: function (error) {
-                    alert("error");
-                }
+                    type: 'POST',
+                    data: { "codArticulo": selectedValue },
+                    dataType: 'json',
+                    success: function (response) {
+                        $("span#precio").text(response.precio);
+                    },
+                    error: function (error) {
+                        alert("error");
+                    }
                 });
-               
+
             }
-            
+
         }
     </script>
 </asp:Content>

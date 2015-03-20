@@ -96,7 +96,6 @@
         <td>&nbsp;</td>
         <td colspan="7" align="center">
 		    <input type="button" value="Grabar Datos" class="btn" onclick="javascript: validarForm()" />
-            <input type="submit" value="submit" class="btn"  />
             &nbsp;
             <%: Html.ActionLink("Cancelar", "Index", "InformeAccidenteVehicular", routeValues: null, htmlAttributes: new {@class="btn", onclick = "return confirm('¿Desea salir de Ingresar Informe de Accidente Vehicular?')" })%>
         </td>

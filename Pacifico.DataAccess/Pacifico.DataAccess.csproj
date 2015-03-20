@@ -108,6 +108,9 @@
     <Compile Include="INFORME_INSPECTORIA.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>
+    <Compile Include="INFORME_JUNTA_MEDICA.cs">
+      <DependentUpon>Pacifico.tt</DependentUpon>
+    </Compile>
     <Compile Include="INFORME_PROCURADORIA.cs">
       <DependentUpon>Pacifico.tt</DependentUpon>
     </Compile>

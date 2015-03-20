@@ -71,45 +71,51 @@ namespace Pacifico.Interfaces.Controllers
         {
             try
             {
-                SERVICIO_SEDE servicioSedeNueva = new SERVICIO_SEDE();
-
-                if (string.IsNullOrEmpty(dsServicioList))
+                if (string.IsNullOrEmpty(collection["Tx_Observacion"].ToString()))
                 {
-                    servicioSedeNueva.Co_Servicio = int.Parse(dsServicioList);
+                    throw new Exception();
                 }
                 else
                 {
-                    servicioSedeNueva.Co_Servicio = int.Parse(dsServicioList);
+                    SERVICIO_SEDE servicioSedeNueva = new SERVICIO_SEDE();
+
+                    if (string.IsNullOrEmpty(dsServicioList))
+                    {
+                        servicioSedeNueva.Co_Servicio = int.Parse(dsServicioList);
+                    }
+                    else
+                    {
+                        servicioSedeNueva.Co_Servicio = int.Parse(dsServicioList);
+                    }
+
+                    servicioSedeNueva.Co_Sede = int.Parse(collection["co_Sede"]);
+                    servicioSedeNueva.Tx_Estado = collection["Tx_Estado"];
+                    servicioSedeNueva.Tx_Observacion = collection["Tx_Observacion"];
+
+                    //string rucValidar = prestadoraBL.ValidarRuc(sedeNueva.Nu_Ruc);
+                    Boolean agregado = servicioSedeBL.AgregarServicioSede(servicioSedeNueva);
+
+                    if (agregado)
+                    {
+                        return RedirectToAction("Index", "EvaluacionServicio", new { codigoSolicitud = int.Parse(collection["co_Solicitud"]), codigoPrestadora = int.Parse(collection["co_Prestadora"]), codigoSede = int.Parse(collection["co_Sede"]), servicioCreado = "creado" });
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "Error al Registrar Servicio";
+
+                        List<SERVICIO> servicios = servicioSedeBL.servicioListar();
+                        ViewData["dsServicio"] = new SelectList(servicios, "Co_Servicio", "No_Servicio", dsServicioList);
+
+                        ViewData["co_Solicitud"] = collection["co_Solicitud"];
+                        ViewData["co_Prestadora"] = collection["co_Prestadora"];
+                        ViewData["co_Sede"] = collection["co_Sede"];
+                        return View(servicioSede);
+                    }
                 }
-
-                servicioSedeNueva.Co_Sede = int.Parse(collection["co_Sede"]);
-          //      servicioSedeNueva.Tx_Estado = collection["Tx_Estado"];
-            //    servicioSedeNueva.Tx_Observacion = collection["Tx_Observacion"];
-
-                //string rucValidar = prestadoraBL.ValidarRuc(sedeNueva.Nu_Ruc);
-                Boolean agregado = servicioSedeBL.AgregarServicioSede(servicioSedeNueva);
-
-                if (agregado)
-                {
-                    return RedirectToAction("Index", "EvaluacionServicio", new { codigoSolicitud = int.Parse(collection["co_Solicitud"]), codigoPrestadora = int.Parse(collection["co_Prestadora"]), codigoSede = int.Parse(collection["co_Sede"]), servicioCreado = "creado" });
-                }
-                else
-                {
-                    ViewData["Error"] = "Error al Registrar Servicio";
-
-                    List<SERVICIO> servicios = servicioSedeBL.servicioListar();
-                    ViewData["dsServicio"] = new SelectList(servicios, "Co_Servicio", "No_Servicio", dsServicioList);
-
-                    ViewData["co_Solicitud"] = collection["co_Solicitud"];
-                    ViewData["co_Prestadora"] = collection["co_Prestadora"];
-                    ViewData["co_Sede"] = collection["co_Sede"];
-                    return View(servicioSede);
-                }
-
             }
             catch (Exception ex)
             {
-                ViewData["Error"] = "Debe seleccionar Servicio";
+                ViewData["Error"] = "Debe llenar todos los campos obligatorios";
 
                 List<SERVICIO> servicios = servicioSedeBL.servicioListar();
                 ViewData["dsServicio"] = new SelectList(servicios, "Co_Servicio", "No_Servicio");
@@ -132,49 +138,55 @@ namespace Pacifico.Interfaces.Controllers
             ViewData["co_Solicitud"] = CoSolicitud;
             ViewData["co_Prestadora"] = CoPrestadora;
             ViewData["co_Sede"] = idSede;
-          //  ViewData["EstadoServicio"] = model.Tx_Estado;
+            ViewData["EstadoServicio"] = model.Tx_Estado;
             return View(model);
         }
-
         [HttpPost]
         public ActionResult Edit(int idSede, int idServicio, FormCollection collection, string dsServicioList)
         {
             try
             {
-                SERVICIO_SEDE servicioSedeModificar = new SERVICIO_SEDE();
-
-                //prestadoraModificar.Co_Prestadora;
-                servicioSedeModificar.Co_Servicio = int.Parse(collection["co_Servicio"]);
-                servicioSedeModificar.Co_Sede = idSede;
-        //        servicioSedeModificar.Tx_Estado = collection["Tx_Estado"];
-          //      servicioSedeModificar.Tx_Observacion = collection["Tx_Observacion"];
-
-                Boolean modificado = servicioSedeBL.EditarServicioSede(idSede, idServicio, servicioSedeModificar);
-
-                if (modificado)
+                if (string.IsNullOrEmpty(collection["Tx_Observacion"].ToString()))
                 {
-                    return RedirectToAction("Index", "EvaluacionServicio", new { codigoSolicitud = int.Parse(collection["co_Solicitud"]), codigoPrestadora = int.Parse(collection["co_Prestadora"]), codigoSede = int.Parse(collection["co_Sede"]), servicioModificado = "modificado" });
+                    throw new Exception();
                 }
                 else
                 {
-                    ViewData["Error"] = "Hubo un error al Editar el Servicio. Modificación No Realizada";
+                    SERVICIO_SEDE servicioSedeModificar = new SERVICIO_SEDE();
 
-                    SERVICIO_SEDE model = servicioSedeBL.ObtenerServicioSede(idSede, idServicio);
+                    //prestadoraModificar.Co_Prestadora;
+                    servicioSedeModificar.Co_Servicio = int.Parse(collection["co_Servicio"]);
+                    servicioSedeModificar.Co_Sede = idSede;
+                    servicioSedeModificar.Tx_Estado = collection["Tx_Estado"];
+                    servicioSedeModificar.Tx_Observacion = collection["Tx_Observacion"];
 
-                    List<SERVICIO> servicios = servicioSedeBL.servicioListar();
-                    ViewData["dsServicio"] = new SelectList(servicios, "Co_Servicio", "No_Servicio", model.Co_Servicio);
+                    Boolean modificado = servicioSedeBL.EditarServicioSede(idSede, idServicio, servicioSedeModificar);
 
-                    ViewData["co_Solicitud"] = collection["co_Solicitud"];
-                    ViewData["co_Prestadora"] = collection["co_Prestadora"];
-                    ViewData["co_Sede"] = collection["co_Sede"];
-                    ViewData["EstadoServicio"] = collection["Tx_Estado"];
-                    return View(model);
+                    if (modificado)
+                    {
+                        return RedirectToAction("Index", "EvaluacionServicio", new { codigoSolicitud = int.Parse(collection["co_Solicitud"]), codigoPrestadora = int.Parse(collection["co_Prestadora"]), codigoSede = int.Parse(collection["co_Sede"]), servicioModificado = "modificado" });
+                    }
+                    else
+                    {
+                        ViewData["Error"] = "Hubo un error al Editar el Servicio. Modificación No Realizada";
 
+                        SERVICIO_SEDE model = servicioSedeBL.ObtenerServicioSede(idSede, idServicio);
+
+                        List<SERVICIO> servicios = servicioSedeBL.servicioListar();
+                        ViewData["dsServicio"] = new SelectList(servicios, "Co_Servicio", "No_Servicio", model.Co_Servicio);
+
+                        ViewData["co_Solicitud"] = collection["co_Solicitud"];
+                        ViewData["co_Prestadora"] = collection["co_Prestadora"];
+                        ViewData["co_Sede"] = collection["co_Sede"];
+                        ViewData["EstadoServicio"] = collection["Tx_Estado"];
+                        return View(model);
+
+                    }
                 }
             }
             catch (Exception ex)
             {
-                ViewData["Error"] = "Debe seleccionar Servicio";
+                ViewData["Error"] = "Debe llenar todos los campos obligatorios";
 
                 SERVICIO_SEDE model = servicioSedeBL.ObtenerServicioSede(idSede, idServicio);
 
@@ -223,24 +235,10 @@ namespace Pacifico.Interfaces.Controllers
             return View(pagedModel);
         }
 
-        [HttpPost]
-        public ActionResult SelectSede(FormCollection collection, string dsSedeList)
-        {
-            try
-            {
-                return RedirectToAction("Index", new { codigoPrestadora = int.Parse(collection["Co_Prestadora"]), codigoSede = int.Parse(dsSedeList) });
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-
         public ActionResult Delete(int id)
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -253,5 +251,6 @@ namespace Pacifico.Interfaces.Controllers
                 return View();
             }
         }
+
     }
 }

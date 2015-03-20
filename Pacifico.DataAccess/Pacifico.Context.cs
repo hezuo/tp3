@@ -45,6 +45,7 @@ namespace Pacifico.DataAccess
         public DbSet<HISTORIAL_CLINICO> HISTORIAL_CLINICO { get; set; }
         public DbSet<INFORME_ACCIDENTE_VEHICULAR> INFORME_ACCIDENTE_VEHICULAR { get; set; }
         public DbSet<INFORME_INSPECTORIA> INFORME_INSPECTORIA { get; set; }
+        public DbSet<INFORME_JUNTA_MEDICA> INFORME_JUNTA_MEDICA { get; set; }
         public DbSet<INFORME_PROCURADORIA> INFORME_PROCURADORIA { get; set; }
         public DbSet<INVITACION> INVITACION { get; set; }
         public DbSet<LIQUIDACION_VEHICULAR> LIQUIDACION_VEHICULAR { get; set; }

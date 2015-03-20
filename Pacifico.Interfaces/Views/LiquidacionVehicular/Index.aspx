@@ -13,7 +13,7 @@
         <tr>
             <td>
                 <ul class="nav nav-pills">
-                    <li><%: Html.ActionLink("Regresar al Home", "Index", "Home") %></></li>
+                    <li><%: Html.ActionLink("Regresar al Home", "IndexSiniestroVehicular", "Home") %></></li>
                 </ul>
             </td>
             <td align="right">&nbsp;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-             using Pacifico.DataAccess;
+using Pacifico.DataAccess;
 
 namespace Pacifico.Business
 {
@@ -28,8 +28,8 @@ namespace Pacifico.Business
             byte estadoPendiente = 2;
             byte estadoCerrado = 3;
             presupuestosFiltrado = from p in presupuestos
-                                   where p.Fl_Estado == estadoCerrado || p.Fl_Estado == estadoPendiente                                   
-                                 select p;
+                                   where p.Fl_Estado == estadoCerrado || p.Fl_Estado == estadoPendiente
+                                   select p;
 
             foreach (PRESUPUESTO presupuesto in presupuestosFiltrado)
             {
@@ -39,7 +39,7 @@ namespace Pacifico.Business
             return presupuestosObtenidos;
         }
 
-        
+
 
         public Boolean AgregarPresupuesto(PRESUPUESTO presupuesto)
         {

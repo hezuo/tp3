@@ -56,7 +56,7 @@ namespace Pacifico.Interfaces.Controllers
             liquidacion_vehicular.Co_Usuario = 1;
             liquidacion_vehicular.Fe_Registro = DateTime.Now;
             LiquidacionVehicularLogicaBL.AgregarLiquidacion(liquidacion_vehicular);
-            
+
             return RedirectToAction("Index", new { codigo = liquidacion_vehicular.Co_LiquidacionVehicular.ToString(), estado = "creado" });
         }
 

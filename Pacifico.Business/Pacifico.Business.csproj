@@ -47,6 +47,7 @@
     <Compile Include="DepartamentoLogica.cs" />
     <Compile Include="DocumentoInformeAccidenteVehicularLogica.cs" />
     <Compile Include="EmpleadoLogica.cs" />
+    <Compile Include="EvaluacionPrestadoraLogica.cs" />
     <Compile Include="FormaPagoLogica.cs" />
     <Compile Include="InformeAccidenteVehicularLogica.cs" />
     <Compile Include="InvitacionLogica.cs" />

@@ -20,10 +20,10 @@ namespace Pacifico.DataAccess
         }
     
         public int Co_NumInfProc { get; set; }
-        public string Tx_TipoResultado { get; set; }
+        public string Fl_TipoResultado { get; set; }
         public string Tx_Conclusiones { get; set; }
         public Nullable<System.DateTime> Fe_Emision { get; set; }
-        public Nullable<byte> Fl_Aprobacion { get; set; }
+        public Nullable<bool> Fl_Aprobacion { get; set; }
         public int Co_Expediente { get; set; }
     
         public virtual ICollection<CARTA_NOTARIAL> CARTA_NOTARIAL { get; set; }

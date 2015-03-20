@@ -9,6 +9,7 @@
     {
         @Response.Redirect("/Home/Index");
     }%>
+    <h2>Lista de Expedientes </h2>
 <table width="100%">
     <tr>
         <td>  
@@ -28,9 +29,8 @@
         <td align="right">&nbsp;</td>
     </tr>
 </table>
-
-<h4></h4>
-
+    <br />
+   
 <table class="table table-striped" >
     <tr>
         <th>
@@ -72,15 +72,20 @@
             <%: Html.DisplayFor(modelItem => item.BENEFICIARIO.No_Beneficiario) %>
 
 
-            <%: Html.DisplayFor(modelItem => item.BENEFICIARIO.No_ApePaterno) %>
+            <%: Html.DisplayFor(modelItem => item.BENEFICIARIO.No_ApellidoPaterno) %>
 
 
-            <%: Html.DisplayFor(modelItem => item.BENEFICIARIO.No_ApeMaterno) %>
+            <%: Html.DisplayFor(modelItem => item.BENEFICIARIO.No_ApellidoMaterno) %>
         </td>
         <td>
-            <i class="icon-edit"></i> <%: Html.ActionLink("Examinar Expediente", "Details", new {  id=item.Co_Expediente }) %>
+            <%--<i class="icon-edit"></i> <%: Html.ActionLink("Examinar Expediente", "CReate", new {  id=item.Co_Expediente }) %>
+            --%>
+            
 
-            <i class="icon-edit"></i> <%: Html.ActionLink("Informe Procuradoria", "Create","Informe_Procuradoria", new { id = item.Co_Expediente },null) %>
+
+                 <%: Html.ActionLink("Editar", "Create",new {id=item.Co_Expediente })%>
+            
+
         </td>
     </tr>
 <% } %>

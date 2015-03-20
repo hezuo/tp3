@@ -113,25 +113,25 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptsSection" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
-           
+
 
             $("#botonGuardar").click(function (e) {
                 e.preventDefault();
                 var Tx_Observacion = $("#Tx_Observacion").val();
-                
+
                 if (Tx_Observacion != "") {
                     var r = confirm("Desea guardar?");
                     if (r) {
                         $("form").submit();
                     }
-                    
+
                 } else {
                     $("#errorMessage").text("Ingrese todos los datos");
                 }
-                
+
             });
 
-           
+
         });
         </script>
 

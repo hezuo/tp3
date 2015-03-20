@@ -9,7 +9,13 @@
     {
         @Response.Redirect("/Home/Index");
     }%>
-<table width="100%">
+<h2>Lista de Informes de Procuradoria</h2>
+<label id="lblmsg" style="<%:ViewBag.css %>">
+    No Existen expedientes por evaluar
+</label>
+
+
+    <table width="100%">
     <tr>
         <td>  
             <ul class="nav nav-pills">
@@ -22,64 +28,65 @@
     </tr>
 </table>
 
-<table width="100%">
+    <table width="100%">
     <tr>
-        <td><%: Html.ActionLink("Crear un Nuevo Informe", "Create", "Informe_Procuradoria", routeValues: null, htmlAttributes: new {@class="btn"})%></td>
+        <td>
+            <%: Html.ActionLink("Crear un Nuevo Informe Procuraduria", "Create", new { id = 0, ac = 0 }, new { @class="btn"})%>
+            
+
+
+        </td>
         <td align="right">&nbsp;</td>
     </tr>
 </table>
+     <br />
 
-<h4></h4>
-
-<table class="table table-striped" >
+<table class="table table-striped">
     <tr>
-         <th>
-            <%: Html.DisplayNameFor(model => model.Co_NumInfProc) %>
+        <th>
+            Nro informe
         </th>
         <th>
-            <%: Html.DisplayNameFor(model => model.Tx_TipoResultado) %>
+            Fecha Emision
         </th>
         <th>
-            <%: Html.DisplayNameFor(model => model.Tx_Conclusiones) %>
+           Nro Expediente
         </th>
+        
+        
         <th>
-            <%: Html.DisplayNameFor(model => model.Fe_Emision) %>
-        </th>
-        <th>
-            <%: Html.DisplayNameFor(model => model.Fl_Aprobacion) %>
-        </th>
-        <th>
-            <%: Html.DisplayNameFor(model => model.EXPEDIENTE.BENEFICIARIO.No_Beneficiario) %>
+            Asegurado
         </th>
         <th></th>
     </tr>
-<% foreach (var item in Model) { %>
+
+<%foreach (var item in Model) { %>
     <tr>
         <td>
             <%: Html.DisplayFor(modelItem => item.Co_NumInfProc) %>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.Tx_TipoResultado) %>
+            <%: Html.DisplayFor(modelItem => item.Fe_Emision)%>
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.Tx_Conclusiones) %>
+            <%: Html.DisplayFor(modelItem => item.EXPEDIENTE.Co_Expediente)%>
+        </td>
+        
+ 
+        <td>
+            <%:Html.DisplayFor(modelItem => item.EXPEDIENTE.ASEGURADO.No_Asegurado )%>
+            <%:Html.DisplayFor(modelItem => item.EXPEDIENTE.ASEGURADO.No_ApePaterno)%>
+            <%:Html.DisplayFor(modelItem => item.EXPEDIENTE.ASEGURADO.No_ApeMaterno)%>
+
         </td>
         <td>
-            <%: Html.DisplayFor(modelItem => item.Fe_Emision) %>
-        </td>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.Fl_Aprobacion) %>
-        </td>
-        <td>
-            <%: Html.DisplayFor(modelItem => item.EXPEDIENTE.BENEFICIARIO.No_Beneficiario) %>
-        </td>
-        <td>
-            <%: Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })%> | 
-            <%: Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) %> |
-            <%: Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) %>
+            
+            <%: Html.ActionLink("Editar", "Create", new { id = item.EXPEDIENTE.Co_Expediente, ac=1 })%> |
+            <%: Html.ActionLink("Ver", "Create", new { id = item.EXPEDIENTE.Co_Expediente,ac=2 }) %> |
         </td>
     </tr>
 <% } %>
+
 </table>
 
 </asp:Content>

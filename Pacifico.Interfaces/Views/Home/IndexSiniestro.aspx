@@ -6,41 +6,103 @@
 
 <asp:Content ID="indexFeatured" ContentPlaceHolderID="FeaturedContent" runat="server">
     <% if (!Request.IsAuthenticated)
-    {
-        @Response.Redirect("/Home/Index");   
-    }%>
+       {
+           @Response.Redirect("/Home/Index");
+       }%>
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
                 <h1>Sistema integrado de atencion de siniestros</h1>
-                <!-- <h2><%: ViewBag.Message %></h2> --> 
+                <!-- <h2><%: ViewBag.Message %></h2> -->
             </hgroup>
         </div>
     </section>
     <table width="100%">
         <tr>
-            <td>  
+            <td>
                 <ul class="nav nav-pills">
-                    <% if (Request.IsAuthenticated) { %>
-                    <li><%: Html.ActionLink("Expedientes", "Index", "Expediente") %></li>
+                    <% if (Request.IsAuthenticated)
+                       { %>
+                    <li><%: Html.ActionLink("Actualizar Expedientes", "Index", "Expediente") %></li>
                     <% } %>
-                </ul>	
+                </ul>
             </td>
-            <td align="right">
-                &nbsp;
+            <td align="right">&nbsp;
             </td>
+
         </tr>
     </table>
     <table width="100%">
-    <tr>
-        <td>  
-            <ul class="nav nav-pills">
-                <li><%: Html.ActionLink("Salir del Módulo", "Index", "Home") %></></li>
-            </ul>	
-        </td>
-        <td align="right">
-            &nbsp;
-        </td>
-    </tr>
+        <tr>
+            <td>
+                <ul class="nav nav-pills">
+                    <% if (Request.IsAuthenticated)
+                       { %>
+                    <li><%: Html.ActionLink("Actualizar Informe Procuradoria", "Index", "Informe_Procuradoria") %></li>
+                    <% } %>
+                </ul>
+            </td>
+            <td align="right">&nbsp;
+            </td>
+
+        </tr>
+    </table>
+    <table width="100%">
+        <tr>
+            <td>
+                <ul class="nav nav-pills">
+                    <% if (Request.IsAuthenticated)
+                       { %>
+                    <li><%: Html.ActionLink("Actualizar Informe Junta Medica", "Index", "Informe_JuntaMedica") %></li>
+                    <% } %>
+                </ul>
+            </td>
+            <td align="right">&nbsp;
+            </td>
+
+        </tr>
+    </table>
+
+        <table width="100%">
+        <tr>
+            <td>
+                <ul class="nav nav-pills">
+                    <% if (Request.IsAuthenticated)
+                       { %>
+                    <li><%: Html.ActionLink("Actualizar Carta Notarial", "Index", "Carta_Notarial") %></li>
+                    <% } %>
+                </ul>
+            </td>
+            <td align="right">&nbsp;
+            </td>
+
+        </tr>
+    </table>
+    <table width="100%">
+        <tr>
+            <td>
+                <ul class="nav nav-pills">
+                    <% if (Request.IsAuthenticated)
+                       { %>
+                    <li><%: Html.ActionLink("Actualizar Informe Inspectoria", "Index", "Informe_Inspectoria") %></li>
+                    <% } %>
+                </ul>
+            </td>
+            <td align="right">&nbsp;
+            </td>
+
+        </tr>
+    </table>
+
+    <table width="100%">
+        <tr>
+            <td>
+                <ul class="nav nav-pills">
+                    <li><%: Html.ActionLink("Salir del Módulo", "Index", "Home") %></></li>
+                </ul>
+            </td>
+            <td align="right">&nbsp;
+            </td>
+        </tr>
     </table>
 </asp:Content>

@@ -11,6 +11,13 @@ namespace Pacifico.Business
     {
         PACIFICOEntities servicioSedeDA = new PACIFICOEntities();
 
+        public List<RED> redListar()
+        {
+            List<RED> redes = servicioSedeDA.RED.ToList();
+
+            return redes;
+        }
+
         public List<SERVICIO> servicioListar()
         {
             List<SERVICIO> servicios = servicioSedeDA.SERVICIO.ToList();
@@ -38,6 +45,25 @@ namespace Pacifico.Business
             foreach (SERVICIO_SEDE servicioSede in servicioSedesFiltrado)
             {
                 servicioSedesObtenidas.Add(servicioSede);
+            }
+
+            return servicioSedesObtenidas;
+        }
+
+        public List<SERVICIO_SEDE> servicioSedeListarFiltradoSedeAcreditado(int codigoSede)
+        {
+            List<SERVICIO_SEDE> servicioSedesObtenidas = new List<SERVICIO_SEDE>();
+
+            List<SERVICIO_SEDE> servicioSedes = servicioSedeDA.SERVICIO_SEDE.ToList();
+
+            IEnumerable<SERVICIO_SEDE> servicioSedesFiltrado = null;
+
+            servicioSedesFiltrado = servicioSedes.Where(x => x.Co_Sede == codigoSede);
+
+            foreach (SERVICIO_SEDE servicioSede in servicioSedesFiltrado)
+            {
+                if (servicioSede.Tx_Estado.ToString().Equals("Acreditado"))
+                    servicioSedesObtenidas.Add(servicioSede);
             }
 
             return servicioSedesObtenidas;
@@ -86,10 +112,9 @@ namespace Pacifico.Business
             {
                 SERVICIO_SEDE servicioSedeEditar = ObtenerServicioSede(idSede, idServicio);
 
-                servicioSedeEditar.Co_Sede = servicioSedeModificar.Co_Sede;
                 servicioSedeEditar.Co_Servicio = servicioSedeModificar.Co_Servicio;
-           //     servicioSedeEditar.Tx_Estado = servicioSedeModificar.Tx_Estado;
-             //   servicioSedeEditar.Tx_Observacion = servicioSedeModificar.Tx_Observacion;
+                servicioSedeEditar.Tx_Estado = servicioSedeModificar.Tx_Estado;
+                servicioSedeEditar.Tx_Observacion = servicioSedeModificar.Tx_Observacion;
 
                 servicioSedeDA.SaveChanges();
 
@@ -100,5 +125,28 @@ namespace Pacifico.Business
                 return false;
             }
         }
+
+        public Boolean EditarServicioSede2(int idSede, int idServicio, SERVICIO_SEDE servicioSedeModificar)
+        {
+            try
+            {
+                SERVICIO_SEDE servicioSedeEditar = ObtenerServicioSede(idSede, idServicio);
+
+                //servicioSedeEditar.Co_Sede = servicioSedeModificar.Co_Sede;
+                //servicioSedeEditar.Co_Servicio = servicioSedeModificar.Co_Servicio;
+                servicioSedeEditar.Co_Red = servicioSedeModificar.Co_Red;
+                servicioSedeEditar.Po_Copago = servicioSedeModificar.Po_Copago;
+                servicioSedeEditar.Po_Cobertura = servicioSedeModificar.Po_Cobertura;
+
+                servicioSedeDA.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

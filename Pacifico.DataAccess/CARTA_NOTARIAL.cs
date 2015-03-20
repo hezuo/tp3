@@ -15,8 +15,8 @@ namespace Pacifico.DataAccess
     public partial class CARTA_NOTARIAL
     {
         public int Co_NumCartaNotarial { get; set; }
-        public string Tx_Descripcion { get; set; }
-        public Nullable<System.DateTime> Fe_Creacion { get; set; }
+        public string Tx_Descripción { get; set; }
+        public Nullable<System.DateTime> Fe_Creación { get; set; }
         public Nullable<System.DateTime> Fe_Emision { get; set; }
         public Nullable<System.DateTime> Fe_Recepcion { get; set; }
         public int Co_NumInfProc { get; set; }

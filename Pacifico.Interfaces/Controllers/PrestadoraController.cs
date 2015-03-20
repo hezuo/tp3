@@ -16,6 +16,7 @@ namespace Pacifico.Interfaces.Controllers
         PrestadoraLogica prestadoraBL = new PrestadoraLogica();
         DepartamentoLogica departamentoBL = new DepartamentoLogica();
         ProvinciaLogica provinciaBL = new ProvinciaLogica();
+        EvaluacionPrestadoraLogica evaluacionPrestadoraBL = new EvaluacionPrestadoraLogica();
 
         public ActionResult Index(string codigoPrestadora, string razon, string ruc, string fechaIni, string fechaFin, string estado, int page = 1, int pageSize = 10)
         {
@@ -39,6 +40,41 @@ namespace Pacifico.Interfaces.Controllers
             else
             {
                 model = prestadoraBL.prestadoraListar();
+            }
+            PagedList<PRESTADORA> pagedModel = new PagedList<PRESTADORA>(model, page, pageSize);
+            return View(pagedModel);
+        }
+
+        public ActionResult IndexPrestadora(string codigoPrestadora, string razon, string ruc, string fechaIni, string fechaFin, string coPrestadora, string inactivo, int page = 1, int pageSize = 10)
+        {
+            if (string.IsNullOrEmpty(coPrestadora))
+            {
+            }
+            else
+            {
+                ViewData["Ok"] = "Prestadora con Código " + coPrestadora + " Evaluada Satisfactoriamente";
+            }
+
+            if (string.IsNullOrEmpty(inactivo))
+            {
+            }
+            else
+            {
+                ViewData["Ok"] = "Prestadora con Código " + coPrestadora + " fue Inactivada";
+            }
+
+            List<PRESTADORA> model;
+            if (!string.IsNullOrEmpty(razon) || !string.IsNullOrEmpty(ruc) || !string.IsNullOrEmpty(fechaIni) || !string.IsNullOrEmpty(fechaFin))
+            {
+                model = prestadoraBL.prestadoraListarFiltrado(razon, ruc, fechaIni, fechaFin, "1");
+                ViewData["Tx_RazonSocial"] = razon;
+                ViewData["Nu_Ruc"] = ruc;
+                ViewData["Fe_AfiliacionIni"] = fechaIni;
+                ViewData["Fe_AfiliacionFin"] = fechaFin;
+            }
+            else
+            {
+                model = prestadoraBL.prestadoraListarActivo();
             }
             PagedList<PRESTADORA> pagedModel = new PagedList<PRESTADORA>(model, page, pageSize);
             return View(pagedModel);
@@ -72,6 +108,18 @@ namespace Pacifico.Interfaces.Controllers
             return View(model);
         }
 
+        public ActionResult DetailsPrestadora(int id)
+        {
+            PRESTADORA prestadoras = prestadoraBL.ObtenerPrestadora(id);
+
+            List<EVALUACION_PRESTADORA> model = evaluacionPrestadoraBL.evaluacionPrestadoraListarFiltrado(id);
+
+            ViewData["CoPrestadora"] = prestadoras.Co_Prestadora;
+            ViewData["RazonSocial"] = prestadoras.Tx_RazonSocial;
+            ViewData["RUC"] = prestadoras.Nu_Ruc;
+            return View(model);
+        }
+
         public ActionResult Create()
         {
             List<DEPARTAMENTO> departamentos = departamentoBL.departamentoListar();
@@ -82,7 +130,6 @@ namespace Pacifico.Interfaces.Controllers
 
             return View();
         }
-
         [HttpPost]
         public ActionResult Create(PRESTADORA prestadora, FormCollection collection, string dsDepartamentoList, string dsProvinciaList, string dsDistritoList)
         {
@@ -210,7 +257,6 @@ namespace Pacifico.Interfaces.Controllers
 
             return View(model);
         }
-
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection, string dsDepartamentoList, string dsProvinciaList, string dsDistritoList)
         {
@@ -313,7 +359,6 @@ namespace Pacifico.Interfaces.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -331,7 +376,6 @@ namespace Pacifico.Interfaces.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult Search(FormCollection collection)
         {
@@ -397,6 +441,60 @@ namespace Pacifico.Interfaces.Controllers
             }
         }
 
+        public ActionResult SearchPrestadora()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SearchPrestadora(FormCollection collection)
+        {
+            try
+            {
+                string razon = collection["Tx_RazonSocial"];
+                string ruc = collection["Nu_Ruc"];
+                string fechaIni = collection["Fe_AfiliacionIni"];
+                string fechaFin = collection["Fe_AfiliacionFin"];
+
+                if (!string.IsNullOrEmpty(razon) || !string.IsNullOrEmpty(ruc) || !string.IsNullOrEmpty(fechaIni) || !string.IsNullOrEmpty(fechaFin))
+                {
+                    List<PRESTADORA> prestadoras = prestadoraBL.prestadoraListarFiltrado(razon, ruc, fechaIni, fechaFin, "1");
+
+                    ViewData["Tx_RazonSocial"] = razon;
+                    ViewData["Nu_Ruc"] = ruc;
+                    ViewData["Fe_AfiliacionIni"] = fechaIni;
+                    ViewData["Fe_AfiliacionFin"] = fechaFin;
+
+                    if (prestadoras.Count() == 0)
+                    {
+                        ViewData["Error"] = "No hay registros coicidentes";
+                        return View();
+                    }
+                    else
+                    {
+                        PagedList<PRESTADORA> pagedPrestadoras = new PagedList<PRESTADORA>(prestadoras, 1, 10);
+                        return View("IndexPrestadora", pagedPrestadoras);
+                    }
+
+                }
+                else
+                {
+                    ViewData["Error"] = "Debe llenar algun filtro";
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewData["Error"] = ex.Message;
+
+                ViewData["Tx_RazonSocial"] = collection["Tx_RazonSocial"];
+                ViewData["Nu_Ruc"] = collection["Nu_Ruc"];
+                ViewData["Fe_AfiliacionIni"] = collection["Fe_AfiliacionIni"];
+                ViewData["Fe_AfiliacionFin"] = collection["Fe_AfiliacionFin"];
+
+                return View();
+            }
+        }
+
         public ActionResult Select(string razon, string ruc, string fechaIni, string fechaFin, string estado, int page = 1, int pageSize = 10)
         {
             List<PRESTADORA> model;
@@ -423,7 +521,6 @@ namespace Pacifico.Interfaces.Controllers
             PagedList<PRESTADORA> pagedModel = new PagedList<PRESTADORA>(model, page, pageSize);
             return View(pagedModel);
         }
-
         [HttpPost]
         public ActionResult Select(FormCollection collection)
         {

@@ -93,7 +93,7 @@ namespace Pacifico.Interfaces.Controllers
             {
                 presupuesto.Nu_Presupuesto = "PRE000" + presupuesto.Co_Presupuesto;
                 presupuesto.Fl_Estado = 2;
-                presupuesto.Fe_Presupuesto = DateTime.Now; 
+                presupuesto.Fe_Presupuesto = DateTime.Now;
                 db.PRESUPUESTO.Add(presupuesto);
                 db.SaveChanges();
                 String[] articulos = collection.GetValues("articulos[]");
@@ -142,17 +142,18 @@ namespace Pacifico.Interfaces.Controllers
 
             return View(presupuesto);
         }
-        public ActionResult Rechazar(int codPresupuesto) {
+        public ActionResult Rechazar(int codPresupuesto)
+        {
             PRESUPUESTO presupuesto = db.PRESUPUESTO.Find(codPresupuesto);
-            presupuesto.Fl_Estado = 3;            
+            presupuesto.Fl_Estado = 3;
             db.Entry(presupuesto).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Consultar", new { codigo = presupuesto.Co_Presupuesto.ToString(), estado = "Presupuesto rechazado" });
         }
         [HttpPost]
-         public ActionResult Evaluar(PRESUPUESTO presupuesto, FormCollection collection)
+        public ActionResult Evaluar(PRESUPUESTO presupuesto, FormCollection collection)
         {
-            
+
             if (ModelState.IsValid)
             {
                 presupuesto.Fl_Estado = 4;
@@ -160,11 +161,11 @@ namespace Pacifico.Interfaces.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Consultar", new { codigo = presupuesto.Co_Presupuesto.ToString(), estado = "Presupuesto con código " + presupuesto.Co_Presupuesto + " ha sido aprobado" });
             }
-            
-            
+
+
             return View(presupuesto);
         }
-    [HttpPost]
+        [HttpPost]
         public ActionResult getDatosSiniestro(int codSiniestro)
         {
             SINIESTRO siniestro = db.SINIESTRO.Find(codSiniestro);
@@ -175,8 +176,8 @@ namespace Pacifico.Interfaces.Controllers
 
             return Json(new { placa = siniestro.POLIZA_VEHICULAR.VEHICULO.Nu_Placa, poliza = siniestro.POLIZA_VEHICULAR.Co_PolizaVehicular, asegurado = siniestro.POLIZA_VEHICULAR.ASEGURADO.No_ApePaterno + " " + siniestro.POLIZA_VEHICULAR.ASEGURADO.No_ApeMaterno });
         }
-        
-            [HttpPost]
+
+        [HttpPost]
         public ActionResult getDatosArticulo(int codArticulo)
         {
             ARTICULO articulo = db.ARTICULO.Find(codArticulo);
@@ -192,13 +193,15 @@ namespace Pacifico.Interfaces.Controllers
             return View();
         }
 
-        public ActionResult ListarSiniestros() {
-               return View(siniestroBL.listarSiniestros());
+        public ActionResult ListarSiniestros()
+        {
+            return View(siniestroBL.listarSiniestros());
         }
 
-        public ActionResult ListarSieniestrosVehiculares(int codigoSiniestro) {
+        public ActionResult ListarSieniestrosVehiculares(int codigoSiniestro)
+        {
             return View(siniestroBL.listarSiniestroVehicular(codigoSiniestro));
-             
+
         }
         public ActionResult ListarFormaPago()
         {
@@ -234,9 +237,8 @@ namespace Pacifico.Interfaces.Controllers
         }
 
 
-      
 
 
-      }
+
+    }
 }
-

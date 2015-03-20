@@ -5,9 +5,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Pacifico.Business;
 using Pacifico.DataAccess;
-
+using Pacifico.Business;
 namespace MvcApplication1.Controllers
 {
     public class Informe_ProcuradoriaController : Controller
@@ -20,6 +19,7 @@ namespace MvcApplication1.Controllers
         public ActionResult Index()
         {
             var informe_procuradoria = db.INFORME_PROCURADORIA.Include(i => i.EXPEDIENTE);
+            ViewBag.css = "color: red;display: none;";
             return View(informe_procuradoria.ToList());
         }
 
@@ -39,11 +39,54 @@ namespace MvcApplication1.Controllers
         //
         // GET: /Informe_Procuradoria/Create
 
-        public ActionResult Create(int id = 0)
+        public ActionResult Create(int id = 0, int ac = 0)
         {
             INFORME_PROCURADORIA informe_procuradoria = null;
 
             EXPEDIENTE Expediente = LNExpediente.getOne(id);
+
+            if (ac == 2)
+            {
+                ViewBag.csshide = "display:none;";
+                ViewBag.valueboton = "";
+                ViewBag.titulo = "Ver Informe Procuradoria";
+            }
+            if (ac == 1)
+            {
+                ViewBag.csshide = "display: inline-block";
+                ViewBag.valueboton = "Actualizar Informe";
+                ViewBag.titulo = "Actualizar Informe Procuradoria";
+            }
+            if (id == 0)
+            {
+                ViewBag.csshide = "display: inline-block";
+                ViewBag.valueboton = "Grabar Informe";
+                ViewBag.titulo = "Nuevo Informe Procuradoria";
+
+                var query =
+                    from c in db.EXPEDIENTE
+                    where !(from o in db.INFORME_PROCURADORIA
+                            select o.Co_Expediente)
+                           .Contains(c.Co_Expediente)
+                    select c;
+                if (query.Count() == 0)
+                {
+                    var informe_procuradoria2 = db.INFORME_PROCURADORIA.Include(i => i.EXPEDIENTE);
+                    ViewBag.css = "color: red;display: inline-block;";
+                    return View("Index", informe_procuradoria2.ToList());
+                }
+
+                Expediente = query.First();
+
+
+
+                id = Expediente.Co_Expediente;
+
+
+
+            }
+
+
             if (Expediente != null)
             {
                 informe_procuradoria = new INFORME_PROCURADORIA();
@@ -51,16 +94,18 @@ namespace MvcApplication1.Controllers
                 {
                     informe_procuradoria = Expediente.INFORME_PROCURADORIA.First();
                     informe_procuradoria.EXPEDIENTE = Expediente;
-               //     informe_procuradoria.Fl_Aprobacion = true;
+                    informe_procuradoria.Fl_Aprobacion = true;
                 }
                 else
                 {
                     informe_procuradoria.EXPEDIENTE = Expediente;
-               //     informe_procuradoria.Fl_Aprobacion = true;
+                    informe_procuradoria.Fe_Emision = DateTime.Now;
+                    informe_procuradoria.Fl_Aprobacion = true;
                 }
 
             }
-            ViewBag.Co_Expediente = new SelectList(LNExpediente.getAll(), "Co_Expediente", "BENEFICIARIO.No_Beneficiario", id);
+            ViewBag.Co_Expediente = new SelectList(LNExpediente.getAll(), "Co_Expediente", "Co_Expediente", id);
+
             return View(informe_procuradoria);
         }
 
@@ -73,21 +118,23 @@ namespace MvcApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                String Mensaje = "";
                 if (informe_procuradoria.Co_NumInfProc > 0)
                 {
+                    Mensaje = "Informe Procuradoria Actualizado";
                     LNINFORME_PROCURADORIA.Edit(informe_procuradoria);
                 }
                 else
                 {
+                    Mensaje = "Informe Procuradoria Registrado";
                     LNINFORME_PROCURADORIA.Add(informe_procuradoria);
                 }
 
 
-                return RedirectToAction("Index", "Expediente");
+                return Content("<script language='javascript' type='text/javascript'>alert('" + Mensaje + "');window.location.assign('../../Informe_Procuradoria')</script>");
             }
 
-            ViewBag.Co_Expediente = new SelectList(db.EXPEDIENTE, "Co_Expediente", "BENEFICIARIO.No_Beneficiario", informe_procuradoria.Co_Expediente);
+            ViewBag.Co_Expediente = new SelectList(db.EXPEDIENTE, "Co_Expediente", "No_Beneficiario", informe_procuradoria.Co_Expediente);
             return View(informe_procuradoria);
         }
 
@@ -101,7 +148,7 @@ namespace MvcApplication1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Co_Expediente = new SelectList(db.EXPEDIENTE, "Co_Expediente", "BENEFICIARIO.No_Beneficiario", informe_procuradoria.Co_Expediente);
+            ViewBag.Co_Expediente = new SelectList(db.EXPEDIENTE, "Co_Expediente", "No_Beneficiario", informe_procuradoria.Co_Expediente);
             return View(informe_procuradoria);
         }
 
@@ -118,7 +165,7 @@ namespace MvcApplication1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Co_Expediente = new SelectList(db.EXPEDIENTE, "Co_Expediente", "BENEFICIARIO.No_Beneficiario", informe_procuradoria.Co_Expediente);
+            ViewBag.Co_Expediente = new SelectList(db.EXPEDIENTE, "Co_Expediente", "No_Beneficiario", informe_procuradoria.Co_Expediente);
             return View(informe_procuradoria);
         }
 

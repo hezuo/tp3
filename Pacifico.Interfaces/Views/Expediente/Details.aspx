@@ -98,8 +98,8 @@
                 DNI:
                 <%: Html.DisplayFor(model => model.BENEFICIARIO.Nu_DocIdentidad) %>, 
                 <%: Html.DisplayFor(model => model.BENEFICIARIO.No_Beneficiario) %>
-                <%: Html.DisplayFor(model => model.BENEFICIARIO.No_ApePaterno) %>
-                <%: Html.DisplayFor(model => model.BENEFICIARIO.No_ApeMaterno) %>
+                <%: Html.DisplayFor(model => model.BENEFICIARIO.No_ApellidoPaterno) %>
+                <%: Html.DisplayFor(model => model.BENEFICIARIO.No_ApellidoMaterno) %>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -119,7 +119,7 @@
             <li><a href="#section-topline-2"><label>Protocolo Jurada Domicilio</label></a></li>
             <li><a href="#section-topline-3"><label>Certificado Medico Defuncion</label></a></li>
             <li><a href="#section-topline-4"><label>Historial Clinico</label></a></li>
-            <li><a href="#section-topline-5"><label>Informe Procuraduria</label></a></li>
+            
 
         </ul>
     </nav>
@@ -193,12 +193,7 @@
                         <%: Html.DisplayFor(model => model.CERT_MEDICO_DEFUNCION.First().Tx_Circunscripcion) %></strong></label></td>
                         <td>&nbsp;</td>
                     </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><label><strong>Anio:
-                        <%: Html.DisplayFor(model => model.CERT_MEDICO_DEFUNCION.First().Nu_Anio) %></strong></label></td>
-                        <td>&nbsp;</td>
-                    </tr>
+                 
                     <tr>
                         <td>&nbsp;</td>
                         <td><label><strong>Lugar Defuncion:
@@ -238,7 +233,7 @@
                     <tr>
                         <td>&nbsp;</td>
                         <td><label><strong>Doctor:
-                    <%: Html.DisplayFor(model => model.HISTORIAL_CLINICO.First().No_Doctor) %></strong></label></td>
+                    <%: Html.DisplayFor(model => model.HISTORIAL_CLINICO.First().No_ApeDoctor) %></strong></label></td>
                         <td>&nbsp;</td>
                     </tr>
                     <tr>
@@ -274,35 +269,12 @@
                 </table>
             </div>
         </section>
-        <section id="section-topline-5">
-            <div class="form-actions">
-                <table width="100%">
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><label><strong>Resultado:
-                    <%: Html.DisplayFor(model => model.INFORME_PROCURADORIA.First().Tx_TipoResultado) %></strong></label></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><label><strong>Conclusion Informe:
-                    <%: Html.DisplayFor(model => model.INFORME_PROCURADORIA.First().Tx_Conclusiones) %></strong></label></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td><label><strong>Fecha Emision:
-                    <%: Html.DisplayFor(model => model.INFORME_PROCURADORIA.First().Fe_Emision) %></strong></label></td>
-                        <td>&nbsp;</td>
-                    </tr>
-                </table>
-            </div>
-        </section>
+        
     </div><!-- /content -->
 </div><!-- /tabs -->
-<div>
+<%--<div>
     <%: Html.ActionLink("Atras", "Index", "Expediente", routeValues: null, htmlAttributes: new {@class="btn"})%>
-</div>
+</div>--%>
 
 </asp:Content>
 

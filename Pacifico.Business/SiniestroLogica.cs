@@ -14,7 +14,7 @@ namespace Pacifico.Business
         PACIFICOEntities estadoSiniestroDA = new PACIFICOEntities();
 
 
-      
+
         public List<SINIESTRO> listarSiniestros()
         {
             List<SINIESTRO> estados = siniestroDA.SINIESTRO.ToList();
@@ -72,7 +72,7 @@ namespace Pacifico.Business
 
             return estados;
         }
-        
+
         public IQueryable<SINIESTRO> listarSiniestroVehicular(int codigoSiniestro)
         {
             var consulta = (from siniestro in siniestroDA.SINIESTRO
@@ -81,7 +81,7 @@ namespace Pacifico.Business
                             join asegurado in siniestroDA.ASEGURADO on poliza_vehicular.Co_Asegurado equals asegurado.Co_Asegurado
                             join vehiculo in siniestroDA.VEHICULO on poliza_vehicular.Co_Vehiculo equals vehiculo.Co_Vehiculo
                             where siniestro.Co_TipoSiniestro == codigoSiniestro
-                            select siniestro                            
+                            select siniestro
                              );
             return consulta;
         }

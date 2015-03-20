@@ -23,6 +23,8 @@
                 <ul class="nav nav-pills">
                     <% if (Request.IsAuthenticated) { %>
                     <li><%: Html.ActionLink("Accidentes Vehiculares", "Index", "InformeAccidenteVehicular") %></li>
+                    <li><%: Html.ActionLink("Liquidaciones Vehiculares", "Index", "LiquidacionVehicular") %></li>
+                    <li><%: Html.ActionLink("Presupuestos", "Index", "PresupuestoDetalle") %></li>
                     <% } %>
                 </ul>	
             </td>

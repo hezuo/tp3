@@ -44,6 +44,29 @@ namespace Pacifico.Business
             return estadosObtenidas;
         }
 
+        public List<ESTADO_SOLICITUD> estadoSolicitudListarEvalEnNeg()
+        {
+
+            List<ESTADO_SOLICITUD> estados = estadoSolicitudDA.ESTADO_SOLICITUD.ToList();
+
+            List<ESTADO_SOLICITUD> estadosObtenidas = new List<ESTADO_SOLICITUD>();
+
+            IEnumerable<ESTADO_SOLICITUD> estadosFiltrado;
+
+
+            estadosFiltrado = from s in estados
+                              where s.Co_Estado == 5 || s.Co_Estado == 6
+                              select s;
+
+
+            foreach (ESTADO_SOLICITUD estado in estadosFiltrado)
+            {
+                estadosObtenidas.Add(estado);
+            }
+
+            return estadosObtenidas;
+        }
+
         public List<SOLICITUD_AFILIACION> solicitudListar()
         {
             List<SOLICITUD_AFILIACION> solicitudes = solicitudDA.SOLICITUD_AFILIACION.ToList().OrderByDescending(x => x.Co_Solicitud).ToList();
@@ -64,6 +87,31 @@ namespace Pacifico.Business
             solicitudesFiltrado = from s in solicitudes
                                     where s.Co_Estado == 1 || s.Co_Estado == 2
                                     select s;
+
+
+            foreach (SOLICITUD_AFILIACION solicitud in solicitudesFiltrado)
+            {
+                solicitudesObtenidas.Add(solicitud);
+            }
+
+            solicitudesObtenidas = solicitudesObtenidas.OrderByDescending(x => x.Co_Solicitud).ToList();
+
+            return solicitudesObtenidas;
+        }
+
+        public List<SOLICITUD_AFILIACION> solicitudListarEvalEnNeg()
+        {
+
+            List<SOLICITUD_AFILIACION> solicitudes = solicitudDA.SOLICITUD_AFILIACION.ToList();
+
+            List<SOLICITUD_AFILIACION> solicitudesObtenidas = new List<SOLICITUD_AFILIACION>();
+
+            IEnumerable<SOLICITUD_AFILIACION> solicitudesFiltrado;
+
+
+            solicitudesFiltrado = from s in solicitudes
+                                  where s.Co_Estado == 5 || s.Co_Estado == 6
+                                  select s;
 
 
             foreach (SOLICITUD_AFILIACION solicitud in solicitudesFiltrado)
@@ -146,6 +194,26 @@ namespace Pacifico.Business
                 SOLICITUD_AFILIACION solicitudEditar = ObtenerSolicitud(id);
 
                 solicitudEditar.Tx_EvaluacionServicios = solicitudModificar.Tx_EvaluacionServicios;
+                solicitudEditar.Fe_RegistroUpd = solicitudModificar.Fe_RegistroUpd;
+                solicitudEditar.No_UsuarioUpd = solicitudModificar.No_UsuarioUpd;
+
+                solicitudDA.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public Boolean EditarSolicitudNegociacion(int id, SOLICITUD_AFILIACION solicitudModificar)
+        {
+            try
+            {
+                SOLICITUD_AFILIACION solicitudEditar = ObtenerSolicitud(id);
+
+                solicitudEditar.Tx_ObservacionNegociador = solicitudModificar.Tx_ObservacionNegociador;
                 solicitudEditar.Fe_RegistroUpd = solicitudModificar.Fe_RegistroUpd;
                 solicitudEditar.No_UsuarioUpd = solicitudModificar.No_UsuarioUpd;
 
@@ -252,6 +320,77 @@ namespace Pacifico.Business
         {
 
             List<SOLICITUD_AFILIACION> solicitudes = solicitudListarRegEnEval();
+            List<PRESTADORA> prestadores = prestadoraDA.PRESTADORA.ToList();
+
+            List<SOLICITUD_AFILIACION> solicitudesObtenidas = new List<SOLICITUD_AFILIACION>();
+
+            IEnumerable<SOLICITUD_AFILIACION> solicitudesFiltrado;
+
+            if (!string.IsNullOrEmpty(razon) && string.IsNullOrEmpty(ruc))
+            {
+                solicitudesFiltrado = from s in solicitudes
+                                      join p in prestadores
+                                      on s.Co_Prestadora equals p.Co_Prestadora
+                                      where p.Tx_RazonSocial.ToLower().Contains(razon.ToLower())
+                                      select s;
+            }
+            else
+                if (string.IsNullOrEmpty(razon) && !string.IsNullOrEmpty(ruc))
+                {
+                    solicitudesFiltrado = from s in solicitudes
+                                          join p in prestadores
+                                          on s.Co_Prestadora equals p.Co_Prestadora
+                                          where p.Nu_Ruc.ToLower().Contains(ruc.ToLower())
+                                          select s;
+                }
+                else
+                    if (!string.IsNullOrEmpty(razon) && !string.IsNullOrEmpty(ruc))
+                    {
+                        solicitudesFiltrado = from s in solicitudes
+                                              join p in prestadores
+                                              on s.Co_Prestadora equals p.Co_Prestadora
+                                              where p.Tx_RazonSocial.ToLower().Contains(razon.ToLower()) && p.Nu_Ruc.ToLower().Contains(ruc.ToLower())
+                                              select s;
+                    }
+                    else
+                    {
+                        solicitudesFiltrado = from s in solicitudes
+                                              join p in prestadores
+                                              on s.Co_Prestadora equals p.Co_Prestadora
+                                              select s;
+                    }
+
+            if (!string.IsNullOrEmpty(usuario))
+            {
+                solicitudesFiltrado = solicitudesFiltrado.Where(x => x.No_UsuarioIns.ToLower().Contains(usuario.ToLower()));
+            }
+            if (!string.IsNullOrEmpty(estado))
+            {
+                solicitudesFiltrado = solicitudesFiltrado.Where(x => x.Co_Estado == int.Parse(estado));
+            }
+            if (!string.IsNullOrEmpty(fechaIni))
+            {
+                solicitudesFiltrado = solicitudesFiltrado.Where(x => x.Fe_Solicitud >= DateTime.Parse(fechaIni));
+            }
+            if (!string.IsNullOrEmpty(fechaFin))
+            {
+                solicitudesFiltrado = solicitudesFiltrado.Where(x => x.Fe_Solicitud <= DateTime.Parse(fechaFin));
+            }
+
+            foreach (SOLICITUD_AFILIACION solicitud in solicitudesFiltrado)
+            {
+                solicitudesObtenidas.Add(solicitud);
+            }
+
+            solicitudesObtenidas = solicitudesObtenidas.OrderByDescending(x => x.Co_Solicitud).ToList();
+
+            return solicitudesObtenidas;
+        }
+
+        public List<SOLICITUD_AFILIACION> solicitudListarFiltradoEvalEnNeg(string razon, string ruc, string fechaIni, string fechaFin, string usuario, string estado)
+        {
+
+            List<SOLICITUD_AFILIACION> solicitudes = solicitudListarEvalEnNeg();
             List<PRESTADORA> prestadores = prestadoraDA.PRESTADORA.ToList();
 
             List<SOLICITUD_AFILIACION> solicitudesObtenidas = new List<SOLICITUD_AFILIACION>();

@@ -11,22 +11,34 @@ namespace Pacifico.DataAccess
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SOLICITUD_AFILIACION
     {
         public int Co_Solicitud { get; set; }
+        [Display(Name = "Invitación")]
+        [Range(0, int.MaxValue, ErrorMessage = "Ingrese sólo números")]
         public int Co_Invitacion { get; set; }
         public string Nu_Folio { get; set; }
+        [Display(Name = "Prestadora")]
         public int Co_Prestadora { get; set; }
+        [Display(Name = "Fecha Solicitud")]
         public System.DateTime Fe_Solicitud { get; set; }
         public string No_Contacto { get; set; }
         public string No_ApePatContacto { get; set; }
         public string No_ApeMatContacto { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "Ingrese sólo números")]
         public string Nu_TelefonoContacto { get; set; }
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        [Required]
+        [Display(Name = "Correo Contacto")]
         public string Tx_CorreoContacto { get; set; }
         public string Tx_EvaluacionSunat { get; set; }
         public string Tx_EvaluacionRiesgos { get; set; }
+        [Display(Name = "Coordinador")]
         public int Co_Coordinador { get; set; }
+        [Display(Name = "Evaluador")]
         public int Co_Evaluador { get; set; }
         public string Tx_EvaluacionServicios { get; set; }
         public string Tx_ObservacionAprobador { get; set; }
@@ -36,7 +48,7 @@ namespace Pacifico.DataAccess
         public string No_UsuarioIns { get; set; }
         public System.DateTime Fe_RegistroUpd { get; set; }
         public string No_UsuarioUpd { get; set; }
-    
+
         public virtual EMPLEADO EMPLEADO { get; set; }
         public virtual EMPLEADO EMPLEADO1 { get; set; }
         public virtual ESTADO_SOLICITUD ESTADO_SOLICITUD { get; set; }

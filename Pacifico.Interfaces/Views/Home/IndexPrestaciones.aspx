@@ -25,6 +25,8 @@
                     <li><%: Html.ActionLink("Solicitudes", "Index", "Solicitud") %></></li>
                     <li><%: Html.ActionLink("Prestadoras", "Index", "Prestadora") %></li>
                     <li><%: Html.ActionLink("Servicios", "IndexSolicitud", "Solicitud") %></li>
+                    <li><%: Html.ActionLink("Negociacion", "IndexSolicitud2", "Solicitud") %></li>
+                    <li><%: Html.ActionLink("Evaluacion", "IndexPrestadora", "Prestadora") %></li>
                     <% } %>
                 </ul>	
             </td>

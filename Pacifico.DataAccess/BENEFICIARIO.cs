@@ -22,17 +22,17 @@ namespace Pacifico.DataAccess
         public int Co_Beneficiario { get; set; }
         public string Nu_DocIdentidad { get; set; }
         public string No_Beneficiario { get; set; }
-        public string No_ApePaterno { get; set; }
-        public string No_ApeMaterno { get; set; }
+        public string No_ApellidoPaterno { get; set; }
+        public string No_ApellidoMaterno { get; set; }
         public string Fl_Sexo { get; set; }
         public System.DateTime Fe_Nacimiento { get; set; }
-        public string Tx_EstadoCivil { get; set; }
+        public string Fl_EstadoCivil { get; set; }
         public string Tx_Direccion { get; set; }
         public string Tx_Correo { get; set; }
         public string Nu_Telefono1 { get; set; }
         public string Nu_Telefono2 { get; set; }
         public string Nu_Movil { get; set; }
-        public string Tx_TipoParentesco { get; set; }
+        public string Fl_TipoParentesco { get; set; }
         public decimal Po_Capital { get; set; }
         public string Fl_Estado { get; set; }
     

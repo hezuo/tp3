@@ -19,6 +19,31 @@ namespace Pacifico.Business
             return prestadores;
         }
 
+        public List<PRESTADORA> prestadoraListarActivo()
+        {
+
+            List<PRESTADORA> prestadoras = prestadoraDA.PRESTADORA.ToList();
+
+            List<PRESTADORA> prestadorasObtenidas = new List<PRESTADORA>();
+
+            IEnumerable<PRESTADORA> prestadorasFiltrado;
+
+
+            prestadorasFiltrado = from s in prestadoras
+                                  where s.Fl_Activo == 1
+                                  select s;
+
+
+            foreach (PRESTADORA prestadora in prestadorasFiltrado)
+            {
+                prestadorasObtenidas.Add(prestadora);
+            }
+
+            prestadorasObtenidas = prestadorasObtenidas.OrderByDescending(x => x.Co_Prestadora).ToList();
+
+            return prestadorasObtenidas;
+        }
+
         public string ValidarRuc(string ruc)
         {
 
@@ -126,6 +151,24 @@ namespace Pacifico.Business
                 prestadoraEditar.Tx_CorreoRepresentanteLegal = prestadoraModificar.Tx_CorreoRepresentanteLegal;
                 prestadoraEditar.Fe_RegistroUpd = prestadoraModificar.Fe_RegistroUpd;
                 prestadoraEditar.No_UsuarioUpd = prestadoraModificar.No_UsuarioUpd;
+
+                prestadoraDA.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public Boolean EditarPrestadoraEstado(int id, int estado)
+        {
+            try
+            {
+                PRESTADORA prestadoraEditar = ObtenerPrestadora(id);
+
+                prestadoraEditar.Fl_Activo = estado;
 
                 prestadoraDA.SaveChanges();
 

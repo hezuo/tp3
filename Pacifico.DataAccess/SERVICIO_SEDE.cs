@@ -11,7 +11,8 @@ namespace Pacifico.DataAccess
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class SERVICIO_SEDE
     {
         public int Co_Sede { get; set; }
@@ -21,7 +22,7 @@ namespace Pacifico.DataAccess
         public decimal Po_Cobertura { get; set; }
         public string Tx_Estado { get; set; }
         public string Tx_Observacion { get; set; }
-    
+
         public virtual RED RED { get; set; }
         public virtual SEDE SEDE { get; set; }
         public virtual SERVICIO SERVICIO { get; set; }

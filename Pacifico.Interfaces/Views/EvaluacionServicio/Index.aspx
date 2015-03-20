@@ -107,7 +107,7 @@
         <td>
             <%: Html.ActionLink("Terminar", "IndexSolicitud", "Solicitud", routeValues: null, htmlAttributes: new {@class="btn", onclick = "return confirm('¿Desea terminar la evaluacion de servicio?')" })%>
         </td>
-                <td>&nbsp;</td>
+        <td>&nbsp;</td>
     </tr>
 </table>
 

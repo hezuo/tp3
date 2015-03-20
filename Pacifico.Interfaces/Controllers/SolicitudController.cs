@@ -67,6 +67,27 @@ namespace Pacifico.Interfaces.Controllers
             return View(pagedModel);
         }
 
+        public ActionResult IndexSolicitud2(string codigoSolicitud, string razon, string ruc, string fechaIni, string fechaFin, string usuario, string estado, int page = 1, int pageSize = 10)
+        {
+            List<SOLICITUD_AFILIACION> model;
+            if (!string.IsNullOrEmpty(razon) || !string.IsNullOrEmpty(ruc) || !string.IsNullOrEmpty(fechaIni) || !string.IsNullOrEmpty(fechaFin) || !string.IsNullOrEmpty(usuario) || !string.IsNullOrEmpty(estado))
+            {
+                model = solicitudBL.solicitudListarFiltradoEvalEnNeg(razon, ruc, fechaIni, fechaFin, usuario, estado);
+                ViewData["Tx_RazonSocial"] = razon;
+                ViewData["Nu_Ruc"] = ruc;
+                ViewData["Fe_SolicitudIni"] = fechaIni;
+                ViewData["Fe_SolicitudFin"] = fechaFin;
+                ViewData["No_UsuarioIns"] = usuario;
+                ViewData["Estado_Solicitud"] = estado;
+            }
+            else
+            {
+                model = solicitudBL.solicitudListarEvalEnNeg();
+            }
+            PagedList<SOLICITUD_AFILIACION> pagedModel = new PagedList<SOLICITUD_AFILIACION>(model, page, pageSize);
+            return View(pagedModel);
+        }
+
         public ActionResult Details(int id)
         {
             SOLICITUD_AFILIACION model = solicitudBL.ObtenerSolicitud(id);
@@ -138,7 +159,6 @@ namespace Pacifico.Interfaces.Controllers
                 return View(solicitudTemp);
             } 
         }
-
         [HttpPost]
         public ActionResult Create(SOLICITUD_AFILIACION solicitud, FormCollection collection, string dsEmpleadoCoordinadorList, string dsEmpleadoEvaluadorList)
         {
@@ -263,7 +283,6 @@ namespace Pacifico.Interfaces.Controllers
 
             return View(model);
         }
-
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection, string dsEmpleadoCoordinadorList, string dsEmpleadoEvaluadorList)
         {
@@ -324,7 +343,6 @@ namespace Pacifico.Interfaces.Controllers
             SOLICITUD_AFILIACION model = solicitudBL.ObtenerSolicitud(id);
             return View(model);
         }
-
         [HttpPost]
         public ActionResult EditSolicitud(int id, FormCollection collection)
         {
@@ -365,11 +383,57 @@ namespace Pacifico.Interfaces.Controllers
                 return View(model);
             }
         }
+
+        public ActionResult EditSolicitud2(int id)
+        {
+            SOLICITUD_AFILIACION model = solicitudBL.ObtenerSolicitud(id);
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult EditSolicitud2(int id, FormCollection collection)
+        {
+            try
+            {
+
+                SOLICITUD_AFILIACION solicitudModificar = new SOLICITUD_AFILIACION();
+
+                Boolean cambioEstado = solicitudBL.EditarSolicitudEstado(id, 7);
+
+                solicitudModificar.Tx_ObservacionNegociador = collection["Tx_ObservacionNegociador"];
+                solicitudModificar.Fe_RegistroUpd = DateTime.Now;
+                solicitudModificar.No_UsuarioUpd = collection["No_UsuarioUpd"];
+
+                Boolean modificado = solicitudBL.EditarSolicitudNegociacion(id, solicitudModificar);
+
+                if (modificado)
+                {
+                    ViewData["Ok"] = "Solicitud Número " + id + " Negociada Satisfactoriamente";
+
+                    List<SOLICITUD_AFILIACION> model = solicitudBL.solicitudListarEvalEnNeg();
+                    PagedList<SOLICITUD_AFILIACION> pagedModel = new PagedList<SOLICITUD_AFILIACION>(model, 1, 10);
+                    return View("IndexSolicitud2", pagedModel);
+                }
+                else
+                {
+                    ViewData["Error"] = "Hubo un error al Editar la Solicitud. Modificación No Realizada";
+
+                    SOLICITUD_AFILIACION model = solicitudBL.ObtenerSolicitud(id);
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewData["Error"] = "Debe seleccionar Coordinador y Evaluador";
+
+                SOLICITUD_AFILIACION model = solicitudBL.ObtenerSolicitud(id);
+                return View(model);
+            }
+        }
+
         public ActionResult Delete(int id)
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -390,7 +454,6 @@ namespace Pacifico.Interfaces.Controllers
 
             return View();
         }
-
         [HttpPost]
         public ActionResult Search(FormCollection collection, string dsEstadoSolicitudList)
         {
@@ -463,7 +526,6 @@ namespace Pacifico.Interfaces.Controllers
 
             return View();
         }
-
         [HttpPost]
         public ActionResult SearchSolicitud(FormCollection collection, string dsEstadoSolicitudList)
         {
@@ -528,5 +590,78 @@ namespace Pacifico.Interfaces.Controllers
                 return View();
             }
         }
+
+        public ActionResult SearchSolicitud2()
+        {
+            List<ESTADO_SOLICITUD> estados = solicitudBL.estadoSolicitudListarEvalEnNeg();
+            ViewData["dsEstadoSolicitud"] = new SelectList(estados, "Co_Estado", "No_Estado");
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SearchSolicitud2(FormCollection collection, string dsEstadoSolicitudList)
+        {
+            try
+            {
+
+                string razon = collection["Tx_RazonSocial"];
+                string ruc = collection["Nu_Ruc"];
+                string fechaIni = collection["Fe_SolicitudIni"];
+                string fechaFin = collection["Fe_SolicitudFin"];
+                string usuario = collection["No_UsuarioIns"];
+                string estado = dsEstadoSolicitudList;
+
+
+                if (!string.IsNullOrEmpty(razon) || !string.IsNullOrEmpty(ruc) || !string.IsNullOrEmpty(fechaIni) || !string.IsNullOrEmpty(fechaFin) || !string.IsNullOrEmpty(usuario) || !string.IsNullOrEmpty(estado))
+                {
+                    List<SOLICITUD_AFILIACION> solicitudes = solicitudBL.solicitudListarFiltradoEvalEnNeg(razon, ruc, fechaIni, fechaFin, usuario, estado);
+                    ViewData["Tx_RazonSocial"] = razon;
+                    ViewData["Nu_Ruc"] = ruc;
+                    ViewData["Fe_SolicitudIni"] = fechaIni;
+                    ViewData["Fe_SolicitudFin"] = fechaFin;
+                    ViewData["No_UsuarioIns"] = usuario;
+
+                    if (solicitudes.Count() == 0)
+                    {
+                        ViewData["Error"] = "No hay registros coicidentes";
+
+                        List<ESTADO_SOLICITUD> estados = solicitudBL.estadoSolicitudListarEvalEnNeg();
+                        ViewData["dsEstadoSolicitud"] = new SelectList(estados, "Co_Estado", "No_Estado", dsEstadoSolicitudList);
+                        return View();
+                    }
+                    else
+                    {
+                        PagedList<SOLICITUD_AFILIACION> pagedSolicitudes = new PagedList<SOLICITUD_AFILIACION>(solicitudes, 1, 10);
+                        ViewData["Estado_Solicitud"] = estado;
+                        return View("IndexSolicitud2", pagedSolicitudes);
+                    }
+
+                }
+                else
+                {
+                    ViewData["Error"] = "Debe llenar algun filtro";
+
+                    List<ESTADO_SOLICITUD> estados = solicitudBL.estadoSolicitudListarEvalEnNeg();
+                    ViewData["dsEstadoSolicitud"] = new SelectList(estados, "Co_Estado", "No_Estado");
+
+                    return View();
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewData["Error"] = ex.Message;
+
+                List<ESTADO_SOLICITUD> estados = solicitudBL.estadoSolicitudListarEvalEnNeg();
+                ViewData["dsEstadoSolicitud"] = new SelectList(estados, "Co_Estado", "No_Estado", dsEstadoSolicitudList);
+                ViewData["Tx_RazonSocial"] = collection["Tx_RazonSocial"];
+                ViewData["Nu_Ruc"] = collection["Nu_Ruc"];
+                ViewData["Fe_SolicitudIni"] = collection["Fe_SolicitudIni"];
+                ViewData["Fe_SolicitudFin"] = collection["Fe_SolicitudFin"];
+                ViewData["No_UsuarioIns"] = collection["No_UsuarioIns"];
+
+                return View();
+            }
+        }
+
     }
 }

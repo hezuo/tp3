@@ -16,7 +16,7 @@ namespace Pacifico.DataAccess
     {
         public int Co_HistorialCli { get; set; }
         public string No_Hospital { get; set; }
-        public string No_Doctor { get; set; }
+        public string No_ApeDoctor { get; set; }
         public System.DateTime Fe_Consulta { get; set; }
         public string Tx_ResultadoExamenes { get; set; }
         public string Tx_Diagnostico { get; set; }
