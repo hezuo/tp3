@@ -9,6 +9,9 @@
        {
            @Response.Redirect("/Home/Index");
        }%>
+       <div>
+            <div style="text-align:center;"><h2>Listado Liquidaciones Vehiculares</h2></div>
+         </div>
     <table width="100%">
         <tr>
             <td>
@@ -22,7 +25,7 @@
     </table>
     <table width="100%">
         <tr>
-            <td><%: Html.ActionLink("Registrar Liquidación Vehicular", "Create", "LiquidacionVehicular", routeValues: null, htmlAttributes: new {@class="btn"})%></td>
+            <td><%: Html.ActionLink("Registrar Liquidación", "Create", "LiquidacionVehicular", routeValues: null, htmlAttributes: new {@class="btn"})%></td>
         </tr>
     </table>
 
@@ -30,7 +33,7 @@
 
     <table class="table table-striped">
         <tr>
-            <th>C&oacute;digo
+            <th>Liquidaci&oacute;n
         </th>
             <th>Siniestro
         </th>
@@ -38,8 +41,8 @@
         </th>
             <th>Placa
         </th>
-            <th>Cobertura</th>
-            <th>Estado</th>
+            <th>Monto Cobertura</th>
+            <th>Estado Lidaci&oacute;n</th>
             <th></th>
         </tr>
 

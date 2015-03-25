@@ -9,7 +9,7 @@
     {
         @Response.Redirect("/Home/Index");   
     }%>
-<h2>Editar Informe Vehicular</h2>
+<h2>Modificar Informe de Accidente Vehicular</h2>
 
 <% using (Html.BeginForm()) { %>
     <%: Html.ValidationSummary(true) %>

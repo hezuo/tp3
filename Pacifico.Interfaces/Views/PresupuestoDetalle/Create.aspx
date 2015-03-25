@@ -193,7 +193,8 @@
 
         function llenarSiniestro(value) {
 
-            var selectedValue = value;
+            var selectedValue = value;
+
             $.ajax({
                 url: '<%:Url.Action("getDatosSiniestro", "PresupuestoDetalle")%>',
                 type: 'POST',

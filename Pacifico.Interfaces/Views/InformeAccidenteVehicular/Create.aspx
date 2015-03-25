@@ -12,7 +12,7 @@
         @Response.Redirect("/Home/Index");
     }%>
 
-<h2>Ingresar Informe de Accidente Vehicular</h2>
+<h2>Registrar Informe de Accidente Vehicular</h2>
 
 <% using (Html.BeginForm()) { %>
     <%: Html.ValidationSummary(true) %>
@@ -97,7 +97,7 @@
         <td colspan="7" align="center">
 		    <input type="button" value="Grabar Datos" class="btn" onclick="javascript: validarForm()" />
             &nbsp;
-            <%: Html.ActionLink("Cancelar", "Index", "InformeAccidenteVehicular", routeValues: null, htmlAttributes: new {@class="btn", onclick = "return confirm('¿Desea salir de Ingresar Informe de Accidente Vehicular?')" })%>
+            <%: Html.ActionLink("Cancelar", "Index", "InformeAccidenteVehicular", routeValues: null, htmlAttributes: new {@class="btn", onclick = "return confirm('¿Desea salir de Registrar Informe de Accidente Vehicular?')" })%>
         </td>
         <td>&nbsp;</td>
     </tr>
@@ -205,7 +205,6 @@
                 && Tx_DanosProducidos != ''
                 && Fe_InformeAccidentVehicular != ''
                 ) {
-                alert(Fe_InformeAccidentVehicular);
                 $("form").submit();
                 return true;
             } else {

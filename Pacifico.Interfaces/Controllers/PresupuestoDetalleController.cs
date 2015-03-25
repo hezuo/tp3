@@ -127,6 +127,9 @@ namespace Pacifico.Interfaces.Controllers
         {
             PRESUPUESTO presupuesto = db.PRESUPUESTO.Find(codPresupuesto);
             List<PRESUPUESTO_DETALLE> articulos = (List<PRESUPUESTO_DETALLE>)presupuesto.PRESUPUESTO_DETALLE.ToList();
+            ViewData["excedePresupuesto"] = false;
+            ViewData["montoCobertura"] = 0;
+            ViewData["montoPresupuesto"] = 0;
             decimal? total = 0;
             foreach (PRESUPUESTO_DETALLE articulo in articulos)
             {
@@ -135,9 +138,12 @@ namespace Pacifico.Interfaces.Controllers
 
             decimal? montoCobertura = presupuesto.SINIESTRO.POLIZA_VEHICULAR.Ss_MontoCobertura;
             decimal? montoCoberturaLimite = (montoCobertura * 0.75m);
+
+            ViewData["montoCobertura"] = montoCoberturaLimite;
+            ViewData["montoPresupuesto"] = total;
             if (total > montoCoberturaLimite)
             {
-                return RedirectToAction("Consultar", new { codigo = presupuesto.Co_Presupuesto.ToString(), estado = "Presupuesto excedido " });
+                ViewData["excedePresupuesto"] = true;      
             }
 
             return View(presupuesto);

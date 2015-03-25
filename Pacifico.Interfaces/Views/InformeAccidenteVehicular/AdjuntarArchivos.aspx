@@ -9,7 +9,7 @@
     {
         @Response.Redirect("/Home/Index");   
     }%>
-<h2>Adjuntar Archivos para Informe Vehicular</h2>
+<h2>Adjuntar Archivos para Informe de Accidente Vehicular</h2>
     <h4>
         <b>
             <font color="red">
@@ -82,7 +82,9 @@
         <% } %>
     </ul>
 </div>
-
+    <p>
+        <%: Html.ActionLink("Regresar a Informe de Accidente Vehicular", "Index") %>
+    </p>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="FeaturedContent" runat="server">

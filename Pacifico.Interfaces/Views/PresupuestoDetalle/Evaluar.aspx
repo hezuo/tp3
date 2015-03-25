@@ -22,16 +22,24 @@
         <b>
             <font color="red"  id="errorMessage">
                 <p><%: ViewData["Error"] %></p>
+                <% if (  Boolean.Parse( ViewData["excedePresupuesto"].ToString() ) ) { %>
+             <p>   El presupuesto excede al 75% del valor comercial.</p>
+    <%} %>
             </font>
             </b></h4>
-          <div style="width: 100%; text-align: right;"><button id="botonGuardar" class="btn">Aprobar Presupuesto</button>  
-                          <%: Html.ActionLink("Rechazar", "Rechazar", new { codPresupuesto = Model.Co_Presupuesto }, new { @class = "btn"})%>
+             <div style="width: 100%; text-align: right;">
+            <% if ( ! Boolean.Parse( ViewData["excedePresupuesto"].ToString() ) ) { %>
+                   <button id="botonGuardar" class="btn btn-success">Aprobar</button>  
+            <%} %>
+
+                          <%: Html.ActionLink("Rechazar", "Rechazar", new { codPresupuesto = Model.Co_Presupuesto }, new { @class = "btn btn-danger", @id ="btnRechazar"})%>
 
 
           </div>
 
 
         </div>
+             
     <div class="form-actions">
             <table width="100%">        
                 <tr>
@@ -50,10 +58,8 @@
                     <td>Placa</td>
                     <td>:</td>
                     <td><span id="placa"> <%= Model.SINIESTRO.POLIZA_VEHICULAR.VEHICULO.Nu_Placa%> </span></td>
-                    <td>&nbsp;</td>
-                     <td>Forma de pago</td>
-                    <td>:</td>
-                    <td> <%= Model.FORMA_PAGO.No_FormaPago%>   </td>
+                    <td colspan="4">&nbsp;</td>
+                     
                 </tr>
                 <tr>
                    <td>Observaciones</td>
@@ -113,14 +119,21 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ScriptsSection" runat="server">
     <script type="text/javascript">
         $(document).ready(function () {
+            $('a#btnRechazar').on('click', function (e) {
+                e.preventDefault();
+                var r = confirm("Desea rechazar presupuesto?");
+                if (r) {
+                    window.location = $(this).attr('href');
+                }
 
+            });
 
             $("#botonGuardar").click(function (e) {
                 e.preventDefault();
                 var Tx_Observacion = $("#Tx_Observacion").val();
 
                 if (Tx_Observacion != "") {
-                    var r = confirm("Desea guardar?");
+                    var r = confirm("Desea aprobar Presupuesto?");
                     if (r) {
                         $("form").submit();
                     }

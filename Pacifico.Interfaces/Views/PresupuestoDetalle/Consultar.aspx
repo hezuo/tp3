@@ -11,7 +11,7 @@ CONSULTAR PRESUPUESTO</asp:Content>
 
 
          <div>
-            <div style="text-align:center;"><h2>Consultar Presupuesto</h2>
+            <div style="text-align:center;"><h2>Listado de Presupuestos</h2>
          </div>
             </div>           
 <table width="100%">
@@ -33,7 +33,10 @@ CONSULTAR PRESUPUESTO</asp:Content>
 <table class="table table-striped" >
     <tr>
         <th>
-            C&oacute;digo
+            C&oacute;digo de Presupuesto
+        </th>
+        <th>
+           Siniestro
         </th>
         <th>
             Asegurado
@@ -54,6 +57,9 @@ CONSULTAR PRESUPUESTO</asp:Content>
     <tr>
         <td>
             <%: Html.DisplayFor(modelItem => item.Co_Presupuesto) %>
+        </td>
+        <td>
+            <%: Html.DisplayFor(modelItem => item.SINIESTRO.Nu_Siniestro) %>
         </td>
         <td>
             <%: Html.DisplayFor(modelItem => item.SINIESTRO.POLIZA_VEHICULAR.ASEGURADO.No_ApePaterno) %>

@@ -235,9 +235,7 @@ namespace Pacifico.Interfaces.Controllers
 
                     string contentType = System.IO.Path.GetExtension(file.FileName);
 
-                    if (contentType.ToLower().Equals(".jpg") || contentType.ToLower().Equals(".gif") || contentType.ToLower().Equals(".bmp")
-                        || contentType.ToLower().Equals(".zip") || contentType.ToLower().Equals(".pdf")
-                        )
+                    if (contentType.ToLower().Equals(".jpg") || contentType.ToLower().Equals(".gif") || contentType.ToLower().Equals(".bmp"))
                     {
                         var fileName = Path.GetFileName(file.FileName);
 

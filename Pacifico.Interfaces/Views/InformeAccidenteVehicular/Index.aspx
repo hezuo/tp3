@@ -9,6 +9,10 @@
     {
         @Response.Redirect("/Home/Index");
     }%>
+
+    <div>
+            <div style="text-align:center;"><h2>Informes de Accidentes Vehiculares</h2></div>
+         </div>
 <table width="100%">
     <tr>
         <td>  

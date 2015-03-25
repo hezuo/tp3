@@ -10,7 +10,7 @@ PRESUPUESTO</asp:Content>
     }%>
 
      <div>
-            <div style="text-align:center;"><h2>Presupuestos</h2>
+            <div style="text-align:center;"><h2>Presupuestos</h2></div>
          </div>
 <table width="100%">
     <tr>
@@ -28,7 +28,7 @@ PRESUPUESTO</asp:Content>
 <table width="100%">
     <tr>
         <td><%: Html.ActionLink("Registrar Presupuesto", "Create", "PresupuestoDetalle", routeValues: null, htmlAttributes: new {@class="btn"})%></td>
-        <td><%: Html.ActionLink("Consultar Presupuesto", "Consultar", "PresupuestoDetalle", routeValues: null, htmlAttributes: new {@class="btn"})%></td>
+        <td><%: Html.ActionLink("Evaluar Presupuesto", "Consultar", "PresupuestoDetalle", routeValues: null, htmlAttributes: new {@class="btn"})%></td>
 
     </tr>
 </table>

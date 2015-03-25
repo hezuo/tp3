@@ -6,7 +6,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Create</h2>
+    <div style="text-align:center;"><h2>Registrar Liquidaci&oacute;n</h2></div>
     <form id="form1" runat="server">
 
         <% if (!Request.IsAuthenticated)
@@ -32,7 +32,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>
-                        <label>C&oacute;digo Siniestro<span id="lblco_Siniestro" class="required">(*)</span></label></td>
+                        <label>Siniestro<span id="lblco_Siniestro" class="required">(*)</span></label></td>
                     <td>
                         <label>:</label></td>
                     <td>
@@ -108,7 +108,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td colspan="7" align="center">
-                        <input type="submit" value="Grabar Datos" class="btn" />
+                        <input type="submit" value="Grabar Datos" class="btn" id="btnGrabar"/>
                         &nbsp;
                
                         <%: Html.ActionLink("Cancelar", "Index", "LiquidacionVehicular", routeValues: null, htmlAttributes: new {@class="btn", onclick = "return confirm('¿Desea salir de Registrar Expediente?')" })%>
@@ -130,6 +130,14 @@
         $(document).ready(function () {
             $("#Co_Siniestro").change(function () {
                 llenarTextBox($("#Co_Siniestro").val());
+            });
+
+            $("input#btnGrabar").on('click', function (e) {
+                e.preventDefault();
+                var r = confirm('Desea guardar liquidacion?');
+                if (r) {
+                    $('form').submit();
+                }
             });
         });
         function llenarTextBox(value) {
@@ -153,5 +161,6 @@
                 }
             });
         }
+
     </script>
 </asp:Content>
